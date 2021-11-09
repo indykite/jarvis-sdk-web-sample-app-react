@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "dev": "jarvis-dev-268314"
+  },
+  "targets": {
+    "jarvis-dev-268314": {
+      "hosting": {
+        "jarvis-dev-268314": [
+          "jarvis-dev-268314"
+        ],
+        "wonka-dev": [
+          "wonka-dev"
+        ],
+        "wonka-stg": [
+          "wonka-stg"
+        ],
+        "slugworth-dev": [
+          "slugworth-dev"
+        ]
+      }
+    }
+  }
+}

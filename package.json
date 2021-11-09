@@ -1,0 +1,23 @@
+{
+  "name": "jarvis-sample-apps",
+  "author": "IndyKite",
+  "private": true,
+  "license": "Apache-2.0",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "dependencies": {
+    "@indykiteone/jarvis-sdk-web": "^0.1.1"
+  },
+  "scripts": {
+    "web": "yarn workspace @sample-app/web",
+    "web-ts": "yarn workspace @sample-app/web-ts",
+    "web-simple": "yarn workspace @sample-app/web-simple",
+    "fix": "prettier --loglevel warn --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
