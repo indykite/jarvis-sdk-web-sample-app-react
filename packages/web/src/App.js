@@ -12,7 +12,7 @@ import ForgottenPassword from "./components/ForgotPassword";
 import SetNewPassword from "./components/SetNewPassword";
 import Oidc, { Callback } from "./components/Oidc";
 
-import {csCZLocale} from "@indykiteone/jarvis-sdk-web/lib/services/core/locale/cs-CZ";
+import { csCZLocale } from "@indykiteone/jarvis-sdk-web/lib/services/core/locale/cs-CZ";
 import ConsentPage from "./pages/consentPage";
 
 const defaultUi = localStorage.getItem("whatUiToUse");

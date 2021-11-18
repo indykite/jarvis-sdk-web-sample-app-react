@@ -1,3 +1,5 @@
+import React from "react";
+
 const getLabelColorName = ({ warning, secondary }) => {
   if (warning) {
     return "red";
@@ -11,18 +13,14 @@ const getLabelColorName = ({ warning, secondary }) => {
 const getButtonStyle = (props) => ({
   backgroundColor: getLabelColorName(props),
   border: 0,
-  borderRadius: '5px',
-  padding: '4.5px 20px',
-  cursor: 'pointer',
-  color: props.secondary ? 'white' : 'black',
+  borderRadius: "5px",
+  padding: "4.5px 20px",
+  cursor: "pointer",
+  color: props.secondary ? "white" : "black",
 });
 
 const Button = ({ children, style = {}, ...props }) => {
-  return (
-    <button style={Object.assign({}, getButtonStyle(props), style)}>
-      {children}
-    </button>
-  );
+  return <button style={Object.assign({}, getButtonStyle(props), style)}>{children}</button>;
 };
 
-export default Button;
+export default React.memo(Button);

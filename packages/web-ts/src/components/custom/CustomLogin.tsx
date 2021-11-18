@@ -14,7 +14,7 @@ interface IProps {
 // We need to specify the OIDC redirectURi
 const redirectUri = "/callback";
 
-const Login: React.FC<IProps> = ({setToken}) => {
+const Login: React.FC<IProps> = ({ setToken }) => {
   const history = useHistory();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -112,7 +112,7 @@ const Login: React.FC<IProps> = ({setToken}) => {
           .filter((opt) => opt.prv)
           .map((opt) => (
             <React.Fragment key={opt["@id"]}>
-              <br/>
+              <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
                 onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
