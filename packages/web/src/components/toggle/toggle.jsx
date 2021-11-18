@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 const toggleWrapperStyle = {
@@ -25,13 +26,14 @@ const getToggleHandlerStyle = ({ toggled }) => ({
 const Toggle = ({ toggled, onClick }) => {
   return (
     <div style={toggleWrapperStyle} onClick={onClick}>
-      <div style={getToggleHandlerStyle({ toggled })} toggled={toggled} />
+      <div style={getToggleHandlerStyle({ toggled })} />
     </div>
   );
 };
 
 Toggle.defaultProps = {
   onClick: () => {},
+  toggled: PropTypes.bool,
 };
 
 export default Toggle;

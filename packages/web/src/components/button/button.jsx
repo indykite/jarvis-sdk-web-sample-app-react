@@ -19,7 +19,7 @@ const getButtonStyle = (props) => ({
 
 const Button = ({ children, style = {}, ...props }) => {
   return (
-    <button style={Object.assign({}, getButtonStyle(props), style)} {...props}>
+    <button style={Object.assign({}, getButtonStyle(props), style)}>
       {children}
     </button>
   );
