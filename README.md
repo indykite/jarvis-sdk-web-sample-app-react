@@ -81,7 +81,7 @@ The simple version has env variables hard coded in index.html
 2. Modify start script under scripts to `"start": "react-scripts start"`
 
 ## Roadmap 
-Checkout our roadmap on our [issues page](https://github.com/indykite/indykite-ui-sdk-sample-react/issues)
+Checkout our roadmap on our [issues page](https://github.com/indykite/jarvis-sdk-web-sample-app-react/issues)
 
 ## Contributing 
 [Contribution guidelines for this project](contributing.md)
@@ -89,7 +89,7 @@ Checkout our roadmap on our [issues page](https://github.com/indykite/indykite-u
 ## Support, Feedback, Connect with other developers
 We'd love to have you connect with us or other community developers over at [IndyKite.one](https://indykite.one) 
 
-Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/indykite-ui-sdk-sample-react/issues)
+Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/jarvis-sdk-web-sample-app-react/issues)
 
 ## Vulnerability Reporting
 [Responsible Disclosure](responsible_disclosure.md)
