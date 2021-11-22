@@ -53,7 +53,7 @@ const buttonStyle = {
   minWidth: "91px",
 };
 
-const AuthDialog = ({ consents }) => {
+const AuthDialog = ({ consents, onAllow, onCancel }) => {
   const [toggledConsents, setToggledConsents] = useState([]);
 
   const toggleClickHandler = useCallback(
@@ -76,6 +76,14 @@ const AuthDialog = ({ consents }) => {
       consents.filter((consent) => consent.required).map((consent) => consent.name),
     );
   }, [consents]);
+
+  const allowClickHandler = useCallback(() => {
+    onAllow(toggledConsents);
+  }, [onAllow, toggledConsents]);
+
+  const cancelClickHandler = useCallback(() => {
+    onCancel();
+  }, [onCancel]);
 
   const consentLines = consents.map(({ description, name, required }) => (
     <ConsentLine
@@ -104,10 +112,10 @@ const AuthDialog = ({ consents }) => {
         </div>
       </div>
       <div style={ButtonsWrapperStyle}>
-        <Button high style={buttonStyle}>
+        <Button high style={buttonStyle} onClick={allowClickHandler}>
           Allow
         </Button>
-        <Button high secondary style={buttonStyle}>
+        <Button high secondary style={buttonStyle} onClick={cancelClickHandler}>
           Cancel
         </Button>
       </div>
