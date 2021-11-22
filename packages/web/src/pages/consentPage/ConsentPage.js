@@ -46,6 +46,7 @@ const Auth = () => {
         setConsents([
           {
             description: "Abcd",
+            required: true,
             name: "1",
           },
           {

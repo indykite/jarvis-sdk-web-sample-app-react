@@ -2,7 +2,7 @@ import Button from "../button";
 import ConsentLine from "./consent-line";
 import ConsentTitle from "./consent-title";
 import Header from "./header";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const dialogWrapperStyle = {
   display: "flex",
@@ -71,9 +71,17 @@ const AuthDialog = ({ consents }) => {
     [toggledConsents],
   );
 
-  const consentLines = consents.map(({ description, name }) => (
+  useEffect(() => {
+    setToggledConsents(
+      consents.filter((consent) => consent.required).map((consent) => consent.name),
+    );
+  }, [consents]);
+
+  const consentLines = consents.map(({ description, name, required }) => (
     <ConsentLine
+      key={name}
       description={description}
+      disabled={required}
       name={name}
       onClick={toggleClickHandler}
       toggled={toggledConsents.includes(name)}

@@ -8,14 +8,17 @@ const consentDescriptionStyle = {
   alignItems: "center",
 };
 
-const ConsentLine = ({ description, name, onClick, toggled }) => {
+const ConsentLine = ({ description, disabled, name, onClick, toggled }) => {
   const clickHandler = useCallback(() => {
+    if (disabled) {
+      return;
+    }
     onClick(name);
-  }, [name, onClick]);
+  }, [disabled, name, onClick]);
 
   return (
     <>
-      <Toggle toggled={toggled} onClick={clickHandler} />
+      <Toggle disabled={disabled} toggled={toggled} onClick={clickHandler} />
       <div style={consentDescriptionStyle}>{description}</div>
     </>
   );
