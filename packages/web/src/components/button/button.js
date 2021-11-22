@@ -20,7 +20,12 @@ const getButtonStyle = (props) => ({
 });
 
 const Button = ({ children, style = {}, ...props }) => {
-  return <button style={Object.assign({}, getButtonStyle(props), style)}>{children}</button>;
+  const { high, secondary, warning, ...buttonProps } = props;
+  return (
+    <button style={Object.assign({}, getButtonStyle(props), style)} {...buttonProps}>
+      {children}
+    </button>
+  );
 };
 
 export default React.memo(Button);
