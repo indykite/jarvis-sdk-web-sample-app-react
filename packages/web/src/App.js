@@ -84,9 +84,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (location.pathname === "/") {
       const urlParams = new URLSearchParams(location.search);
-      if (urlParams.has('login_challenge')) {
+      if (urlParams.has("login_challenge")) {
         history.push(`/login/callback/${location.search}`);
       }
     }
