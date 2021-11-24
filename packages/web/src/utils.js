@@ -1,13 +1,12 @@
-export const getSearchParams = () => {
-  const search = window.location.search || "";
-  const searchParamArray = search.substr(1).split("&");
-  const searchParams = searchParamArray.reduce((paramsObj, param) => {
-    if (param.length === 0) return paramsObj;
+export const getSearchParam = (paramName) => {
+  const params = new URLSearchParams(window.location.search);
+  params.get(paramName);
+};
 
-    const [paramName, paramValue] = param.split("=");
-    paramsObj[paramName] = paramValue;
-    return paramsObj;
-  }, {});
-
-  return searchParams;
+export const getEmailFromDigitalTwin = (digitalTwin) => {
+  const properties = digitalTwin.properties || [];
+  const emailProperty = properties.find((property) => {
+    return property?.definition?.property === "email" && property?.meta?.primary;
+  });
+  return emailProperty?.value?.stringValue;
 };

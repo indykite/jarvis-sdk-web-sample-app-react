@@ -1,7 +1,7 @@
 import AuthDialog from "../../components/auth-dialog";
 import React, { useCallback, useEffect, useState } from "react";
 import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-import { getSearchParams } from "../../utils";
+import { getEmailFromDigitalTwin, getSearchParam } from "../../utils";
 
 const pageWrapperStyle = {
   display: "flex",
@@ -24,20 +24,13 @@ const contentWrapperStyle = {
   padding: "29px",
 };
 
-const CHECK_CONSENT_CHALLENGE_URL =
-  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/checkConsentChallenge`;
-const CREATE_CONSENT_VERIFIER_URL =
-  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/createConsentVerifier`;
-const GET_DIGITAl_TWIN_URL =
-  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/getDigitalTwin`;
-
-const getEmailFromDigitalTwin = (digitalTwin) => {
-  const properties = digitalTwin.properties || [];
-  const emailProperty = properties.find((property) => {
-    return property?.definition?.property === "email" && property?.meta?.primary;
-  });
-  return emailProperty?.value?.stringValue;
-};
+const URLS = process.env.REACT_APP_SERVER_URI
+  ? {
+      CHECK_CONSENT_CHALLENGE_URL: `${process.env.REACT_APP_SERVER_URI}/checkConsentChallenge`,
+      CREATE_CONSENT_VERIFIER_URL: `${process.env.REACT_APP_SERVER_URI}/createConsentVerifier`,
+      GET_DIGITAl_TWIN_URL: `${process.env.REACT_APP_SERVER_URI}/getDigitalTwin`,
+    }
+  : {};
 
 const Auth = () => {
   const [consents, setConsents] = useState([]);
@@ -45,13 +38,13 @@ const Auth = () => {
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
-    if (!CHECK_CONSENT_CHALLENGE_URL) return;
+    if (!URLS.CHECK_CONSENT_CHALLENGE_URL) return;
 
-    const searchParams = getSearchParams();
+    const consentChallenge = getSearchParam("consent_challenge");
 
     Promise.resolve()
       .then(async () => {
-        return fetch(GET_DIGITAl_TWIN_URL, {
+        return fetch(URLS.GET_DIGITAl_TWIN_URL, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
@@ -64,7 +57,7 @@ const Auth = () => {
       .then(async (json) => {
         setEmail(getEmailFromDigitalTwin(json.digitalTwin));
 
-        return fetch(`${CHECK_CONSENT_CHALLENGE_URL}/${searchParams["consent_challenge"]}`, {
+        return fetch(`${URLS.CHECK_CONSENT_CHALLENGE_URL}/${consentChallenge}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
@@ -122,9 +115,9 @@ const Auth = () => {
 
   const allowHandler = useCallback(
     (consents) => {
-      const searchParams = getSearchParams();
+      const consentChallenge = getSearchParam("consent_challenge");
 
-      sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
+      sendUserResponse(`${URLS.CREATE_CONSENT_VERIFIER_URL}/${consentChallenge}`, {
         approval: {
           grantScopes: consents,
           grantedAudiences: [audience?.clientId],
@@ -135,9 +128,9 @@ const Auth = () => {
   );
 
   const cancelHandler = useCallback(() => {
-    const searchParams = getSearchParams();
+    const consentChallenge = getSearchParam("consent_challenge");
 
-    sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
+    sendUserResponse(`${URLS.CREATE_CONSENT_VERIFIER_URL}/${consentChallenge}`, {
       denial: {
         error: "access_denied",
         errorDescription: "The access was denied by a user.",
