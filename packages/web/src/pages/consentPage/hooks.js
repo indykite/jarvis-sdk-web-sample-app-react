@@ -40,7 +40,7 @@ export const useGetAuthorizedUserEmail = () => {
 
 /**
  * @param {string} consentChallenge
- * @returns {(consentChallenge: string) => undefined | Promise<[{
+ * @returns {() => undefined | Promise<[{
  *   name: string;
  *   description: string;
  *   required?: boolean;
