@@ -1,12 +1,6 @@
 import React, { useCallback } from "react";
 import Toggle from "../../components/toggle";
-
-const consentDescriptionStyle = {
-  fontSize: "12px",
-  display: "flex",
-  height: "100%",
-  alignItems: "center",
-};
+import { consentDescriptionStyle } from "./styles";
 
 const ConsentLine = ({ description, disabled, name, onClick, toggled }) => {
   const clickHandler = useCallback(() => {

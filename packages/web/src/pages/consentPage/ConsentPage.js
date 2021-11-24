@@ -2,27 +2,7 @@ import AuthDialog from "../../components/auth-dialog";
 import React, { useCallback, useEffect, useState } from "react";
 import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 import { getEmailFromDigitalTwin, getSearchParam } from "../../utils";
-
-const pageWrapperStyle = {
-  display: "flex",
-  position: "relative",
-  backgroundColor: "#02060C",
-  color: "white",
-  justifyContent: "center",
-  overflow: "auto",
-  minHeight: "100vh",
-};
-
-const contentWrapperStyle = {
-  display: "flex",
-  position: "relative",
-  maxWidth: "620px",
-  width: "100%",
-  margin: "120px 0",
-  borderRadius: "16px",
-  backgroundColor: "#10141A",
-  padding: "29px",
-};
+import { contentWrapperStyle, pageWrapperStyle } from "./styles";
 
 const URLS = process.env.REACT_APP_SERVER_URI
   ? {

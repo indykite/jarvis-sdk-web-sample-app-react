@@ -1,21 +1,10 @@
 import React from "react";
-
-const consentTitleWrapperStyle = {
-  marginBottom: "40px",
-};
-
-const requesterWrapperStyle = {
-  fontSize: "20px",
-  marginBottom: "8px",
-};
-
-const titleNoteStyle = {
-  fontSize: "14px",
-};
-
-const highlightStyle = {
-  color: "#6AD48A",
-};
+import {
+  consentTitleWrapperStyle,
+  highlightStyle,
+  requesterWrapperStyle,
+  titleNoteStyle,
+} from "./styles";
 
 const ConsentTitle = ({ audience }) => {
   return (

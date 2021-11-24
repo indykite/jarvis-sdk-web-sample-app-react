@@ -3,55 +3,15 @@ import ConsentLine from "./consent-line";
 import ConsentTitle from "./consent-title";
 import Header from "./header";
 import React, { useCallback, useEffect, useState } from "react";
-
-const dialogWrapperStyle = {
-  display: "flex",
-  flexDirection: "column",
-  width: "100%",
-  height: "100%",
-  minHeight: "105px",
-  paddingBottom: 48,
-};
-
-const headerSeparatorStyle = {
-  position: "absolute",
-  width: "100%",
-  height: "1px",
-  left: 0,
-  top: "148px",
-  backgroundColor: "#141A21",
-};
-
-const consentsWrapperStyle = {
-  display: "grid",
-  gridTemplateColumns: "50px auto",
-  alignItems: "flex-start",
-  gridGap: "16px 32px",
-};
-
-const emptyGridCellStyle = {
-  visibility: "hidden",
-};
-
-const consentNoteStyle = {
-  fontSize: "10px",
-  marginTop: "56px",
-  marginBottom: "46px",
-};
-
-const ButtonsWrapperStyle = {
-  display: "flex",
-  justifyContent: "space-evenly",
-  position: "absolute",
-  bottom: "40px",
-  left: 0,
-  right: 0,
-};
-
-const buttonStyle = {
-  height: "31px",
-  minWidth: "91px",
-};
+import {
+  buttonStyle,
+  ButtonsWrapperStyle,
+  consentNoteStyle,
+  consentsWrapperStyle,
+  dialogWrapperStyle,
+  emptyGridCellStyle,
+  headerSeparatorStyle,
+} from "./styles";
 
 const AuthDialog = ({ audience, consents, onAllow, onCancel, user }) => {
   const [toggledConsents, setToggledConsents] = useState([]);
