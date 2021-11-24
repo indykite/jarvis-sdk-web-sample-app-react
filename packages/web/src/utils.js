@@ -1,6 +1,6 @@
 export const getSearchParam = (paramName) => {
   const params = new URLSearchParams(window.location.search);
-  params.get(paramName);
+  return params.get(paramName);
 };
 
 export const getEmailFromDigitalTwin = (digitalTwin) => {
