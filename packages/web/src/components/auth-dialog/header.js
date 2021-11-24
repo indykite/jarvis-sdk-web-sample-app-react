@@ -1,4 +1,3 @@
-import Button from "../button";
 import React from "react";
 
 const headerWrapperStyle = {
@@ -38,16 +37,17 @@ const switchAccountButtonWrapperStyle = {
   gridArea: "button",
 };
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <div style={headerWrapperStyle}>
       <div style={accountGridStyle}>
         <div style={avatarStyle} />
         <div style={accountNameWrapperStyle}>
-          You logged in as <b>Cory Forbes</b>.
+          You logged in as <b>{user}</b>.
         </div>
         <div style={switchAccountButtonWrapperStyle}>
-          <Button secondary>Switch account</Button>
+          {/* We may implement here a `Switch account` button later */}
+          {/* <Button secondary onClick={switchAccountClickHandler}>Switch account</Button> */}
         </div>
       </div>
     </div>

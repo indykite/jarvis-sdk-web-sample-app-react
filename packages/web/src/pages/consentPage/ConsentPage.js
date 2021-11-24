@@ -24,12 +24,22 @@ const contentWrapperStyle = {
   padding: "29px",
 };
 
-const CHECK_CONSENT_CHALLENGE_URL = process.env.REACT_APP_CONSENT_SERVER_URI && `${process.env.REACT_APP_CONSENT_SERVER_URI}/checkConsentChallenge`;
-const CREATE_CONSENT_VERIFIER_URL = process.env.REACT_APP_CONSENT_SERVER_URI && `${process.env.REACT_APP_CONSENT_SERVER_URI}/createConsentVerifier`;
+const CHECK_CONSENT_CHALLENGE_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/checkConsentChallenge`;
+const CREATE_CONSENT_VERIFIER_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/createConsentVerifier`;
+const GET_DIGITAl_TWIN_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/getDigitalTwin`;
+
+const getEmailFromDigitalTwin = (digitalTwin) => {
+  const properties = digitalTwin.properties || [];
+  const emailProperty = properties.find(property => {
+    return property?.definition?.property === 'email' && property?.meta?.primary;
+  });
+  return emailProperty?.value?.stringValue;
+};
 
 const Auth = () => {
   const [consents, setConsents] = useState([]);
   const [audience, setAudience] = useState(null);
+  const [email, setEmail] = useState(null);
 
   useEffect(() => {
     if (!CHECK_CONSENT_CHALLENGE_URL) return;
@@ -38,6 +48,19 @@ const Auth = () => {
 
     Promise.resolve()
       .then(async () => {
+        return fetch(GET_DIGITAl_TWIN_URL, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
+          },
+        });
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then(async (json) => {
+        setEmail(getEmailFromDigitalTwin(json.digitalTwin));
+
         return fetch(`${CHECK_CONSENT_CHALLENGE_URL}/${searchParams["consent_challenge"]}`, {
           method: "GET",
           headers: {
@@ -113,7 +136,7 @@ const Auth = () => {
   return (
     <div style={pageWrapperStyle}>
       <div style={contentWrapperStyle}>
-        <AuthDialog audience={audience} consents={consents} onAllow={allowHandler} onCancel={cancelHandler} />
+        <AuthDialog audience={audience} consents={consents} onAllow={allowHandler} onCancel={cancelHandler} user={email} />
       </div>
     </div>
   );
