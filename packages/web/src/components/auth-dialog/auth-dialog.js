@@ -53,7 +53,7 @@ const buttonStyle = {
   minWidth: "91px",
 };
 
-const AuthDialog = ({ consents, onAllow, onCancel }) => {
+const AuthDialog = ({ audience, consents, onAllow, onCancel }) => {
   const [toggledConsents, setToggledConsents] = useState([]);
 
   const toggleClickHandler = useCallback(
@@ -96,19 +96,19 @@ const AuthDialog = ({ consents, onAllow, onCancel }) => {
     />
   ));
 
+  if (!audience) return null;
+
   return (
     <div style={dialogWrapperStyle}>
       <Header />
       <div style={headerSeparatorStyle} />
       <div style={consentsWrapperStyle}>
         <div style={emptyGridCellStyle} />
-        <ConsentTitle />
+        <ConsentTitle audience={audience.displayName} />
         {consentLines}
         <div style={emptyGridCellStyle} />
         <div style={consentNoteStyle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas sed tempus.
-          Dignissim sodales ut eu sem integer vitae.
+          {audience.description}
         </div>
       </div>
       <div style={ButtonsWrapperStyle}>

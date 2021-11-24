@@ -29,7 +29,7 @@ const CREATE_CONSENT_VERIFIER_URL = process.env.REACT_APP_CONSENT_SERVER_URI && 
 
 const Auth = () => {
   const [consents, setConsents] = useState([]);
-  const [audienceClientId, setAudienceClientId] = useState(null);
+  const [audience, setAudience] = useState(null);
 
   useEffect(() => {
     if (!CHECK_CONSENT_CHALLENGE_URL) return;
@@ -54,9 +54,9 @@ const Auth = () => {
           description: displayName,
           required
         })));
-        const returnedAudienceClientId = json.audiences?.[0]?.clientId;
-        if (returnedAudienceClientId) {
-          setAudienceClientId(returnedAudienceClientId);
+        const returnedAudience = json.audiences?.[0] ?? {};
+        if (returnedAudience) {
+          setAudience(returnedAudience);
         }
       })
       .catch((err) => {
@@ -94,10 +94,10 @@ const Auth = () => {
     sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
       approval: {
         grantScopes: consents,
-        grantedAudiences: [audienceClientId],
+        grantedAudiences: [audience?.clientId],
       }
     });
-  }, [audienceClientId, sendUserResponse]);
+  }, [audience, sendUserResponse]);
 
   const cancelHandler = useCallback(() => {
     const searchParams = getSearchParams();
@@ -113,7 +113,7 @@ const Auth = () => {
   return (
     <div style={pageWrapperStyle}>
       <div style={contentWrapperStyle}>
-        <AuthDialog consents={consents} onAllow={allowHandler} onCancel={cancelHandler} />
+        <AuthDialog audience={audience} consents={consents} onAllow={allowHandler} onCancel={cancelHandler} />
       </div>
     </div>
   );
