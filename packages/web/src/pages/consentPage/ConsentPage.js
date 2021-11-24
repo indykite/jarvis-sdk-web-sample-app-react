@@ -24,15 +24,19 @@ const contentWrapperStyle = {
   padding: "29px",
 };
 
+const CHECK_CONSENT_CHALLENGE_URL = process.env.REACT_APP_CONSENT_SERVER_URI && `${process.env.REACT_APP_CONSENT_SERVER_URI}/checkConsentChallenge`;
+
 const Auth = () => {
   const [consents, setConsents] = useState([]);
 
   useEffect(() => {
+    if (!CHECK_CONSENT_CHALLENGE_URL) return;
+    
     const searchParams = getSearchParams();
 
     Promise.resolve()
       .then(async () => {
-        return fetch(`/go/v1/checkConsentChallenge/${searchParams["consent_challenge"]}`, {
+        return fetch(`${CHECK_CONSENT_CHALLENGE_URL}/${searchParams["consent_challenge"]}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
@@ -40,24 +44,15 @@ const Auth = () => {
         });
       })
       .then((response) => {
-        console.log("response", response);
-
-        // TODO: Mock
-        setConsents([
-          {
-            description: "Abcd",
-            required: true,
-            name: "1",
-          },
-          {
-            description: "Efgh",
-            name: "2",
-          },
-          {
-            description: "Ijkl",
-            name: "3",
-          },
-        ]);
+        return response.text();
+      })
+      .then((returnedBody) => {
+        const json = JSON.parse(returnedBody);
+        setConsents(json.scopes.map(({ name, displayName, required }) => ({
+          name,
+          description: displayName,
+          required
+        })));
       })
       .catch((err) => {
         console.error(err);
