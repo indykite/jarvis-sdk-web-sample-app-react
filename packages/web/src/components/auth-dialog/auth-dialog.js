@@ -107,9 +107,7 @@ const AuthDialog = ({ audience, consents, onAllow, onCancel, user }) => {
         <ConsentTitle audience={audience.displayName} />
         {consentLines}
         <div style={emptyGridCellStyle} />
-        <div style={consentNoteStyle}>
-          {audience.description}
-        </div>
+        <div style={consentNoteStyle}>{audience.description}</div>
       </div>
       <div style={ButtonsWrapperStyle}>
         <Button high style={buttonStyle} onClick={allowClickHandler}>

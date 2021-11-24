@@ -24,14 +24,17 @@ const contentWrapperStyle = {
   padding: "29px",
 };
 
-const CHECK_CONSENT_CHALLENGE_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/checkConsentChallenge`;
-const CREATE_CONSENT_VERIFIER_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/createConsentVerifier`;
-const GET_DIGITAl_TWIN_URL = process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/getDigitalTwin`;
+const CHECK_CONSENT_CHALLENGE_URL =
+  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/checkConsentChallenge`;
+const CREATE_CONSENT_VERIFIER_URL =
+  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/createConsentVerifier`;
+const GET_DIGITAl_TWIN_URL =
+  process.env.REACT_APP_SERVER_URI && `${process.env.REACT_APP_SERVER_URI}/getDigitalTwin`;
 
 const getEmailFromDigitalTwin = (digitalTwin) => {
   const properties = digitalTwin.properties || [];
-  const emailProperty = properties.find(property => {
-    return property?.definition?.property === 'email' && property?.meta?.primary;
+  const emailProperty = properties.find((property) => {
+    return property?.definition?.property === "email" && property?.meta?.primary;
   });
   return emailProperty?.value?.stringValue;
 };
@@ -43,7 +46,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (!CHECK_CONSENT_CHALLENGE_URL) return;
-    
+
     const searchParams = getSearchParams();
 
     Promise.resolve()
@@ -72,11 +75,13 @@ const Auth = () => {
         return response.json();
       })
       .then((json) => {
-        setConsents((json.scopes || []).map(({ name, displayName, required }) => ({
-          name,
-          description: displayName,
-          required
-        })));
+        setConsents(
+          (json.scopes || []).map(({ name, displayName, required }) => ({
+            name,
+            description: displayName,
+            required,
+          })),
+        );
         const returnedAudience = json.audiences?.[0] ?? {};
         if (returnedAudience) {
           setAudience(returnedAudience);
@@ -88,39 +93,46 @@ const Auth = () => {
   }, []);
 
   const sendUserResponse = useCallback((url, body) => {
-    Promise.resolve().then(async () => {
-      return fetch(url, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }).then((response) => {
-        return response.json();
-      }).then((json) => {
-        const params = new URLSearchParams(window.location.search);
-        params.delete('login_challenge');
-        params.delete('consent_challenge');
-        params.append('consent_verifier', json.verifier);
+    Promise.resolve()
+      .then(async () => {
+        return fetch(url, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(body),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((json) => {
+            const params = new URLSearchParams(window.location.search);
+            params.delete("login_challenge");
+            params.delete("consent_challenge");
+            params.append("consent_verifier", json.verifier);
 
-        window.location.href = `${json.authorizationEndpoint}/?${params.toString()}`;
+            window.location.href = `${json.authorizationEndpoint}/?${params.toString()}`;
+          });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }).catch(err => {
-      console.error(err);
-    });
   }, []);
 
-  const allowHandler = useCallback((consents) => {
-    const searchParams = getSearchParams();
+  const allowHandler = useCallback(
+    (consents) => {
+      const searchParams = getSearchParams();
 
-    sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
-      approval: {
-        grantScopes: consents,
-        grantedAudiences: [audience?.clientId],
-      }
-    });
-  }, [audience, sendUserResponse]);
+      sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
+        approval: {
+          grantScopes: consents,
+          grantedAudiences: [audience?.clientId],
+        },
+      });
+    },
+    [audience, sendUserResponse],
+  );
 
   const cancelHandler = useCallback(() => {
     const searchParams = getSearchParams();
@@ -129,14 +141,20 @@ const Auth = () => {
       denial: {
         error: "access_denied",
         errorDescription: "The access was denied by a user.",
-      }
+      },
     });
   }, [sendUserResponse]);
 
   return (
     <div style={pageWrapperStyle}>
       <div style={contentWrapperStyle}>
-        <AuthDialog audience={audience} consents={consents} onAllow={allowHandler} onCancel={cancelHandler} user={email} />
+        <AuthDialog
+          audience={audience}
+          consents={consents}
+          onAllow={allowHandler}
+          onCancel={cancelHandler}
+          user={email}
+        />
       </div>
     </div>
   );
