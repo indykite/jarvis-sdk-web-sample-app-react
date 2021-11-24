@@ -25,9 +25,11 @@ const contentWrapperStyle = {
 };
 
 const CHECK_CONSENT_CHALLENGE_URL = process.env.REACT_APP_CONSENT_SERVER_URI && `${process.env.REACT_APP_CONSENT_SERVER_URI}/checkConsentChallenge`;
+const CREATE_CONSENT_VERIFIER_URL = process.env.REACT_APP_CONSENT_SERVER_URI && `${process.env.REACT_APP_CONSENT_SERVER_URI}/createConsentVerifier`;
 
 const Auth = () => {
   const [consents, setConsents] = useState([]);
+  const [audienceClientId, setAudienceClientId] = useState(null);
 
   useEffect(() => {
     if (!CHECK_CONSENT_CHALLENGE_URL) return;
@@ -44,54 +46,69 @@ const Auth = () => {
         });
       })
       .then((response) => {
-        return response.text();
+        return response.json();
       })
-      .then((returnedBody) => {
-        const json = JSON.parse(returnedBody);
-        setConsents(json.scopes.map(({ name, displayName, required }) => ({
+      .then((json) => {
+        setConsents((json.scopes || []).map(({ name, displayName, required }) => ({
           name,
           description: displayName,
           required
         })));
+        const returnedAudienceClientId = json.audiences?.[0]?.clientId;
+        if (returnedAudienceClientId) {
+          setAudienceClientId(returnedAudienceClientId);
+        }
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
-  const allowHandler = useCallback((consents) => {
-    const searchParams = getSearchParams();
-
+  const sendUserResponse = useCallback((url, body) => {
     Promise.resolve().then(async () => {
-      return fetch(`/go/v1/checkConsentChallenge/${searchParams["consent_challenge"]}`, {
+      return fetch(url, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
+          'content-type': 'application/json',
         },
-        body: JSON.stringify({
-          grant_scopes: consents,
-          granted_audiences: [],
-        }),
+        body: JSON.stringify(body),
+      }).then((response) => {
+        return response.json();
+      }).then((json) => {
+        const params = new URLSearchParams(window.location.search);
+        params.delete('login_challenge');
+        params.delete('consent_challenge');
+        params.append('consent_verifier', json.verifier);
+
+        window.location.href = `${json.authorizationEndpoint}/?${params.toString()}`;
       });
+    }).catch(err => {
+      console.error(err);
     });
   }, []);
+
+  const allowHandler = useCallback((consents) => {
+    const searchParams = getSearchParams();
+
+    sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
+      approval: {
+        grantScopes: consents,
+        grantedAudiences: [audienceClientId],
+      }
+    });
+  }, [audienceClientId, sendUserResponse]);
 
   const cancelHandler = useCallback(() => {
     const searchParams = getSearchParams();
 
-    Promise.resolve().then(async () => {
-      return fetch(`/go/v1/checkConsentChallenge/${searchParams["consent_challenge"]}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${await IKUIUserAPI.getValidAccessToken()}`,
-        },
-        body: JSON.stringify({
-          error: "access_denied",
-          error_description: "The acces was denied by a user.",
-        }),
-      });
+    sendUserResponse(`${CREATE_CONSENT_VERIFIER_URL}/${searchParams["consent_challenge"]}`, {
+      denial: {
+        error: "access_denied",
+        errorDescription: "The access was denied by a user.",
+      }
     });
-  }, []);
+  }, [sendUserResponse]);
 
   return (
     <div style={pageWrapperStyle}>
