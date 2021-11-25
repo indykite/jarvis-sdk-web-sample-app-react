@@ -11,11 +11,11 @@ const URLS = process.env.REACT_APP_SERVER_URI
   : {};
 
 /**
- * @returns {string|undefined}
+ * @returns {Promise<string|undefined>}
  */
 export const useGetAuthorizedUserEmail = () => {
   return useCallback(() => {
-    if (!URLS.GET_DIGITAl_TWIN_URL) return;
+    if (!URLS.GET_DIGITAl_TWIN_URL) return Promise.resolve();
 
     return Promise.resolve()
       .then(async () => {
@@ -52,7 +52,7 @@ export const useGetAuthorizedUserEmail = () => {
  */
 export const useGetConsents = (consentChallenge) => {
   return useCallback(() => {
-    if (!URLS.CHECK_CONSENT_CHALLENGE_URL) return;
+    if (!URLS.CHECK_CONSENT_CHALLENGE_URL) return Promise.resolve([[], {}]);
 
     return Promise.resolve()
       .then(async (json) => {
