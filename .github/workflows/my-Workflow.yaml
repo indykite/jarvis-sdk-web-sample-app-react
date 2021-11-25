@@ -24,8 +24,8 @@ jobs:
       - name: Build TypeScript
         run: |
           yarn web-ts build
-      - name: Cy Check Create User
-        uses: ../packages/integration/specs/createUser.spec.js
+      - name: Cypress run 
+        uses: cypress-io/github-action@v2
         timeout-minutes: 10
         with:
           build: yarn
