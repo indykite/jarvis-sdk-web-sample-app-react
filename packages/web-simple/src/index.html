@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
 
-  <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
-  <script src="https://unpkg.com/@indykiteone/jarvis-sdk-web/dist/iksdkweb.dist.js"></script>
-  <![endif]-->
-</head>
-<body>
-<script>
-  $(document).ready(function () {
-    IK.IKUIInit({
-      baseUri: "https://jarvis-dev.indykite.com",
-      applicationId: "696e6479-6b69-4465-8000-020f00000000",
-      tenantId: "696e6479-6b69-4465-8000-030f00000001",
-    });
+    <script src="https://unpkg.com/@indykiteone/jarvis-sdk-web/dist/iksdkweb.dist.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        IK.IKUIInit({
+          baseUri: "https://jarvis-dev.indykite.com",
+          applicationId: "696e6479-6b69-4465-8000-020f00000000",
+          tenantId: "696e6479-6b69-4465-8000-030f00000001",
+        });
 
-    IK.IKUICore.renderLogin({
-      renderElementSelector: ".login-container",
-      onSuccessLogin: function (data) {
-        console.log(data);
-      },
-      redirectUri: "/callback",
-      forgotPasswordPath: "/forgot",
-      labels: {
-        // username: "Custom Username",
-        // password: "Custom Password",
-        loginButton: "Custom Login with us!",
-        // registerButton: "Custom Register",
-        // forgotPasswordButton: "custom Forgot Password",
-        // orOtherOptions: "Custom you can also continue with",
-      },
-    });
-  });
-</script>
+        IK.IKUICore.renderLogin({
+          renderElementSelector: ".login-container",
+          onSuccessLogin: function (data) {
+            console.log(data);
+          },
+          redirectUri: "/callback",
+          forgotPasswordPath: "/forgot",
+          labels: {
+            // username: "Custom Username",
+            // password: "Custom Password",
+            loginButton: "Custom Login with us!",
+            // registerButton: "Custom Register",
+            // forgotPasswordButton: "custom Forgot Password",
+            // orOtherOptions: "Custom you can also continue with",
+          },
+        });
+      });
+    </script>
 
-<div style="height: 100%; display: flex; justify-content: center; align-items: center">
-  <div class="login-container" style="width: 300px"></div>
-</div>
-</body>
+    <div style="height: 100%; display: flex; justify-content: center; align-items: center">
+      <div class="login-container" style="width: 300px"></div>
+    </div>
+  </body>
 </html>

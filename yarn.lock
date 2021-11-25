@@ -1234,10 +1234,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@indykiteone/jarvis-sdk-web@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.1.1.tgz#b231ce5c90a04a745cde034f40f2a7a5171cafed"
-  integrity sha512-9A4woYDPTSZXZWpzeAWw/W15EQMBIomWdnQVKoOR4yYrhjBgyRgKmbcQ6ELmZo3IP7wElDzLQX3iVpOxyOcxsA==
+"@indykiteone/jarvis-sdk-web@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.1.2.tgz#4e0bdbcd4ce51ad3c61cfb0d633a32a6f6b47717"
+  integrity sha512-JQm/w42V05Xr6nDv1ZsBDa82OBQ/ItEE+VP7LfCzfX21NVw7ucOENUqqkS/vtVpJfu7KlXeWyf49p0AXRQepFg==
   dependencies:
     axios "^0.21.1"
     core-js "^3.16.0"
