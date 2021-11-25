@@ -1,17 +1,15 @@
-name: Build and Deploy
+name: Cypress tests
 
 on:
   pull_request:
     branches:
       - master
 
-
 env:
   FB_PROJECT: jarvis-dev-268314
   FB_HOSTING_WONKA: hosting:wonka-dev
   FB_HOSTING_WONKA_STG: hosting:wonka-stg
   FB_HOSTING_SLUGWORTH: hosting:slugworth-dev
-
 
 jobs:
   build-ts-web:
@@ -24,14 +22,14 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: "12.x"
-      - name: Install Web Project
-        run: yarn install
-      # - name: Build TypeScript
-        # run: |
-        #   yarn web-ts build
       - name: Setup Env Variables
         run: |
           mv ./packages/web/.env-wonka ./packages/web/.env
+      - name: Install Web Project
+        run: yarn install
+      - name: Build
+        run: |
+          yarn web build
       - name: Cypress run
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
