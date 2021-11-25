@@ -1,7 +1,6 @@
 name: Build and Deploy
 
-on: 
-  pull_request:
+on-pull-request:
     branches:
       - cypress
 
