@@ -26,14 +26,13 @@ jobs:
           node-version: "12.x"
       - name: Install Web Project
         run: yarn install
-      - name: Build TypeScript
-        run: |
-          yarn web-ts build
+      # - name: Build TypeScript
+        # run: |
+        #   yarn web-ts build
       - name: Cypress run
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
         with:
-          build: yarn
           start: yarn web start
           browser: chrome
           # headless: true
