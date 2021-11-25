@@ -3,13 +3,15 @@ name: Build and Deploy
 on:
   pull_request:
     branches:
-      - cypress
+      - master
+
 
 env:
   FB_PROJECT: jarvis-dev-268314
   FB_HOSTING_WONKA: hosting:wonka-dev
   FB_HOSTING_WONKA_STG: hosting:wonka-stg
   FB_HOSTING_SLUGWORTH: hosting:slugworth-dev
+
 
 jobs:
   build-ts-web:
