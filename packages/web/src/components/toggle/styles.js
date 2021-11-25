@@ -3,11 +3,7 @@ const getBackgroundColor = (disabled) => {
 };
 
 const getHandlerColor = ({ disabled, toggled }) => {
-  if (disabled) {
-    return "#BAE0D0";
-  }
-
-  return toggled ? "#6AD48A" : "white";
+  return disabled ? "#BAE0D0" : toggled ? "#6AD48A" : "white";
 };
 
 export const getToggleWrapperStyle = ({ disabled }) => ({
