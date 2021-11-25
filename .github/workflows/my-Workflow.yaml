@@ -35,4 +35,4 @@ jobs:
         with:
           start: yarn web start
           browser: chrome
-          # headless: true
+          headless: true
