@@ -1,0 +1,34 @@
+name: Build and Deploy
+
+on-pull-requests:
+
+env:
+  FB_PROJECT: jarvis-dev-268314
+  FB_HOSTING_WONKA: hosting:wonka-dev
+  FB_HOSTING_WONKA_STG: hosting:wonka-stg
+  FB_HOSTING_SLUGWORTH: hosting:slugworth-dev
+
+jobs:
+  build-ts-web:
+    name: Build TypeScript Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: "12.x"
+      - name: Install Web Project
+        run: yarn install
+      - name: Build TypeScript
+        run: |
+          yarn web-ts build
+      - name: Create User
+        uses: ../packages/integration/specs/createUser.spec.js
+        timeout-minutes: 10
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
+          # headless: true
