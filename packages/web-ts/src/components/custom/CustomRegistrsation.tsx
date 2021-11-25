@@ -1,12 +1,17 @@
-import React, {useEffect} from "react";
-import {useHistory, Link} from "react-router-dom";
-import {IKUIOidc, IKUIUserAPI, DataTokenResponseType, SetupOptsType} from "@indykiteone/jarvis-sdk-web";
+import React, { useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import {
+  IKUIOidc,
+  IKUIUserAPI,
+  DataTokenResponseType,
+  SetupOptsType,
+} from "@indykiteone/jarvis-sdk-web";
 
 interface IProps {
   setToken: (data: DataTokenResponseType) => void;
 }
 
-const Registration: React.FC<IProps> = ({setToken}) => {
+const Registration: React.FC<IProps> = ({ setToken }) => {
   const history = useHistory();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -53,7 +58,7 @@ const Registration: React.FC<IProps> = ({setToken}) => {
       <input
         id="custom-username"
         name="custom-username"
-        style={{color: "black"}}
+        style={{ color: "black" }}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -65,25 +70,25 @@ const Registration: React.FC<IProps> = ({setToken}) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br/>
+      <br />
       <h5>Confirm Password</h5>
       <input
         id="custom-confirm-password"
         name="custom-confirm-password"
-        style={{color: "black"}}
+        style={{ color: "black" }}
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <br/>
-      <br/>
+      <br />
+      <br />
       <button onClick={handleOnRegister}>Register</button>
-      <br/>
+      <br />
       or you can register using
       {registerOpts
         ?.filter((opt: SetupOptsType) => opt.prv)
         .map((opt: SetupOptsType) => (
           <React.Fragment key={opt["@id"]}>
-            <br/>
+            <br />
             <button
               id={`custom-btn-oidc-${opt.prv}`}
               onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
