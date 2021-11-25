@@ -2,35 +2,37 @@
 
 IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com/platform) Client SDK.
 
-This library contains multiple client libraries for each service of the platform. 
+This library contains multiple client libraries for each service of the platform.
 
-* Token Introspection
-* CRUD Operations on Digital Twins 
-* Change Password 
-* Limited Configuration Management
+- Token Introspection
+- CRUD Operations on Digital Twins
+- Change Password
+- Limited Configuration Management
 
 In order to access to the platform you must obtain an API key first.
 
 ## Terminology
 
-| Definition | Description |
-| ---------- | ----------- |
-| Digital Twin | A digital twin is the digital identity of a physical entity on/in a software/identity system |
-| Application Space ID | ID of the application where the digital twin belongs to |
-| Application Agent ID | ID of the agent which makes the application available for the different calls |
-| Tenant ID | ID of the tenant where the digital twin belongs to. The tenant is belong to an application space |
-| Private Key and Settings | The secret which required to reach the system. Indykite provides the necessary secrets |
-| Property | The digital twin's property (eg.: email, name) |
-| JWT | JSON Web Tokens |
-| Introspect | A process used to validate the token and to retrieve properties assigned to the token |
-| Patch property | Add, change or delete a property of a digital twin |
+| Definition               | Description                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------ |
+| Digital Twin             | A digital twin is the digital identity of a physical entity on/in a software/identity system     |
+| Application Space ID     | ID of the application where the digital twin belongs to                                          |
+| Application Agent ID     | ID of the agent which makes the application available for the different calls                    |
+| Tenant ID                | ID of the tenant where the digital twin belongs to. The tenant is belong to an application space |
+| Private Key and Settings | The secret which required to reach the system. Indykite provides the necessary secrets           |
+| Property                 | The digital twin's property (eg.: email, name)                                                   |
+| JWT                      | JSON Web Tokens                                                                                  |
+| Introspect               | A process used to validate the token and to retrieve properties assigned to the token            |
+| Patch property           | Add, change or delete a property of a digital twin                                               |
 
 ## Documentation
+
 Visit the IndyKite One Developer Community site for official [IndyKite documentation](https://indykite.one/blog?category=5e3e9297-3451-4b52-91ee-8027dcd1789c) and to find out how to use the entire platform for your project.
 
 ## Getting Started
 
 ### Trial
+
 For a trial please contact [IndyKite](https://indykite.com/trial) to setup and
 configure the platform.
 
@@ -80,28 +82,36 @@ The simple version has env variables hard coded in index.html
 1. Go to package.json in the sample package web repo
 2. Modify start script under scripts to `"start": "react-scripts start"`
 
-## Roadmap 
-Checkout our roadmap on our [issues page](https://github.com/indykite/indykite-ui-sdk-sample-react/issues)
+## Roadmap
 
-## Contributing 
+Checkout our roadmap on our [issues page](https://github.com/indykite/jarvis-sdk-web-sample-app-react/issues)
+
+## Contributing
+
 [Contribution guidelines for this project](contributing.md)
 
 ## Support, Feedback, Connect with other developers
-We'd love to have you connect with us or other community developers over at [IndyKite.one](https://indykite.one) 
 
-Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/indykite-ui-sdk-sample-react/issues)
+We'd love to have you connect with us or other community developers over at [IndyKite.one](https://indykite.one)
+
+Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/jarvis-sdk-web-sample-app-react/issues)
 
 ## Vulnerability Reporting
+
 [Responsible Disclosure](responsible_disclosure.md)
 
-## Changelog 
+## Changelog
+
 Coming Soon!
 
 ## Contributers / Acknowledgements
+
 Coming Soon!
 
-## What is IndyKite 
+## What is IndyKite
+
 IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. Based on open source standards, the cloud platform gives developers the ability to secure data and embed identity controls into their Web 3.0 applications. Empowering the world’s 23 million developers without the need to involve security and identity specialists.
 
 ## License
+
 [This project is licensed under the terms of the Apache 2.0 license.](LICENSE)

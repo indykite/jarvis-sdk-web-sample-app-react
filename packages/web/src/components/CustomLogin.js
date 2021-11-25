@@ -96,7 +96,7 @@ const Login = ({ setToken }) => {
           .filter((opt) => opt.prv)
           .map((opt) => (
             <React.Fragment key={opt["@id"]}>
-              <br/>
+              <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
                 onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
