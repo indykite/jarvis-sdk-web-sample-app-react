@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-ts-web:
-    name: Build TypeScript Web
+    name: Build and check TypeScript Web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -24,11 +24,11 @@ jobs:
       - name: Build TypeScript
         run: |
           yarn web-ts build
-      - name: Create User
+      - name: Cy Check Create User
         uses: ../packages/integration/specs/createUser.spec.js
         timeout-minutes: 10
         with:
-          build: npm run build
-          start: npm start
+          build: yarn
+          start: yarn web start
           browser: chrome
           # headless: true
