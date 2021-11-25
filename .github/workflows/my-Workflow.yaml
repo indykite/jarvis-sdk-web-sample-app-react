@@ -12,7 +12,7 @@ env:
   FB_HOSTING_SLUGWORTH: hosting:slugworth-dev
 
 jobs:
-  build-ts-web:
+    cypress-check-web:
     name: Cypress check Web
     runs-on: ubuntu-latest
     steps:
