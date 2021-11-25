@@ -15,7 +15,7 @@ env:
 
 jobs:
   build-ts-web:
-    name: Build and check TypeScript Web
+    name: Cypress check Web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -29,6 +29,9 @@ jobs:
       # - name: Build TypeScript
         # run: |
         #   yarn web-ts build
+      - name: Setup Env Variables
+        run: |
+          mv ./packages/web/.env-wonka ./packages/web/.env
       - name: Cypress run
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
