@@ -1,6 +1,9 @@
 name: Build and Deploy
 
-on-pull-requests:
+on: 
+  pull_request:
+    branches:
+      - cypress
 
 env:
   FB_PROJECT: jarvis-dev-268314
