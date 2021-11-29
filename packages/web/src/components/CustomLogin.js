@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { IKUIOidc, IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 
+const LOGIN_APP = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
+
 const Login = ({ setToken }) => {
   const history = useHistory();
   const [email, setEmail] = React.useState("");
@@ -75,7 +77,8 @@ const Login = ({ setToken }) => {
           <br />
           <button
             id="custom-btn-to-forgot-password"
-            onClick={() => history.push("/forgot/password")}>
+            onClick={() => history.push("/forgot/password")}
+          >
             Forgot password
           </button>
         </>
@@ -99,7 +102,8 @@ const Login = ({ setToken }) => {
               <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
-                onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
+                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: LOGIN_APP[opt["@id"]] })}
+              >
                 {opt.prv}
               </button>
             </React.Fragment>
@@ -113,7 +117,8 @@ const Login = ({ setToken }) => {
           <br />
           <button
             id={`custom-btn-oidc-${setupResponseData.prv}`}
-            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}>
+            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}
+          >
             {setupResponseData.prv}
           </button>
         </>

@@ -28,6 +28,7 @@ const Registration = ({ setToken }) => {
       },
       // termsAgreementSectionContent:
       // "<h5>By clicking Agree & Join you agree with our secret terms and conditions.</h5>",
+      loginApp: JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}"),
     });
   });
 

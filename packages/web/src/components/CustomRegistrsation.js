@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { IKUIOidc, IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 
+const LOGIN_APP = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
+
 const Registration = ({ setToken }) => {
   const history = useHistory();
   const [email, setEmail] = React.useState("");
@@ -79,7 +81,8 @@ const Registration = ({ setToken }) => {
             <br />
             <button
               id={`custom-btn-oidc-${opt.prv}`}
-              onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
+              onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: LOGIN_APP[opt["@id"]] })}
+            >
               {opt.prv}
             </button>
           </React.Fragment>

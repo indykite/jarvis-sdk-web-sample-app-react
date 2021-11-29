@@ -7,6 +7,8 @@ import {
   LoginSetupDataType,
 } from "@indykiteone/jarvis-sdk-web";
 
+const LOGIN_APP = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
+
 interface IProps {
   setToken: (data: DataTokenResponseType) => void;
 }
@@ -89,7 +91,8 @@ const Login: React.FC<IProps> = ({ setToken }) => {
           <br />
           <button
             id="custom-btn-to-forgot-password"
-            onClick={() => history.push("/forgot/password")}>
+            onClick={() => history.push("/forgot/password")}
+          >
             Forgot password
           </button>
         </>
@@ -115,7 +118,8 @@ const Login: React.FC<IProps> = ({ setToken }) => {
               <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
-                onClick={() => IKUIOidc.oidcSetup(opt["@id"], redirectUri)}>
+                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: LOGIN_APP[opt["@id"]] })}
+              >
                 {opt.prv}
               </button>
             </React.Fragment>
@@ -129,7 +133,8 @@ const Login: React.FC<IProps> = ({ setToken }) => {
           <br />
           <button
             id={`custom-btn-oidc-${setupResponseData.prv}`}
-            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}>
+            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}
+          >
             {setupResponseData.prv}
           </button>
         </>
