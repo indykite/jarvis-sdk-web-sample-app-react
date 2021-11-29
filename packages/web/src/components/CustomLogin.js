@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { IKUIOidc, IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 
-const LOGIN_APP = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
+const loginApps = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
 
 const Login = ({ setToken }) => {
   const history = useHistory();
@@ -102,7 +102,7 @@ const Login = ({ setToken }) => {
               <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
-                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: LOGIN_APP[opt["@id"]] })}
+                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: loginApps[opt["@id"]] })}
               >
                 {opt.prv}
               </button>

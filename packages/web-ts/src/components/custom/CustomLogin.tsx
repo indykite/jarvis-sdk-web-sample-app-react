@@ -7,7 +7,7 @@ import {
   LoginSetupDataType,
 } from "@indykiteone/jarvis-sdk-web";
 
-const LOGIN_APP = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
+const loginApps = JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}");
 
 interface IProps {
   setToken: (data: DataTokenResponseType) => void;
@@ -118,7 +118,7 @@ const Login: React.FC<IProps> = ({ setToken }) => {
               <br />
               <button
                 id={`custom-btn-oidc-${opt.prv}`}
-                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: LOGIN_APP[opt["@id"]] })}
+                onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: loginApps[opt["@id"]] })}
               >
                 {opt.prv}
               </button>
