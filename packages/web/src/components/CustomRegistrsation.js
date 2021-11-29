@@ -81,7 +81,13 @@ const Registration = ({ setToken }) => {
             <br />
             <button
               id={`custom-btn-oidc-${opt.prv}`}
-              onClick={() => IKUIOidc.oidcSetup({ id: opt["@id"], redirectUri, loginApp: loginApps[opt["@id"]] })}
+              onClick={() =>
+                IKUIOidc.oidcSetup({
+                  id: opt["@id"],
+                  redirectUri,
+                  loginApp: loginApps[opt["@id"]],
+                })
+              }
             >
               {opt.prv}
             </button>
