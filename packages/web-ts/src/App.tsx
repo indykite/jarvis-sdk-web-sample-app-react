@@ -157,7 +157,7 @@ const App: React.FC = () => {
         <Route path="/set/new/password/:referenceId">
           {state === "custom" ? <CustomSetNewPassword /> : <SetNewPassword />}
         </Route>
-        <Route path="/login/callback">
+        <Route path="/login/oauth2">
           <Oidc />
         </Route>
         <Route path="/registration">
