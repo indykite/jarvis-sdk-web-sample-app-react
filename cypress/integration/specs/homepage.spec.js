@@ -1,26 +1,28 @@
-import homepagePage from "../../support/pages/homepagePage";
 import HomepagePage from "../../support/pages/homepagePage";
+import { homepageURL } from "../../support/helpers/helpers";
 
-describe("homepage", () => {
+describe("homepage check", () => {
   beforeEach(() => {
-    // this helps with your viewport :-) https://whatismyviewport.com/
-    cy.viewport(924, 1059); //half of my screen
-    cy.visit("http://localhost:3000");
-  });
-  it("should load default choice homepage", () => {
-    HomepagePage.startBtn.click();
-    HomepagePage.buildInUIPage.should("exist");
-    HomepagePage.loginBtn.should("exist"); //login btn exists
-    HomepagePage.loginBtn.should("have.text", "Login"); //its text is in EN
+    cy.viewport(924, 1059);
+    cy.visit(homepageURL);
   });
 
-  it("should load CZ custom ui homepage", () => {
-    HomepagePage.CZBtn.click();
+  it("should check default load", () => {
+    // it checks the existence of the Google btn
+    // which should always be there no matter what UI and/or language is default
+    HomepagePage.startBtn.click();
+    cy.contains("google").should("exist");
+  });
+
+  it("should load build-in UI homepage", () => {
+    HomepagePage.builtInBtn.click();
+    HomepagePage.startBtn.click();
+    HomepagePage.builtInUIPage.should("exist");
+  });
+
+  it("should load custom UI homepage", () => {
     HomepagePage.customUIBtn.click();
     HomepagePage.startBtn.click();
-    HomepagePage.customUIPage.should("exist"); //checks custom
-    HomepagePage.passwordText.should("exist"); //password text exists
-    //and be in CZ, which it isn't
-    // HomepagePage.passwordText.should("have.text", "Heslo")
+    HomepagePage.customUIPage.should("exist");
   });
 });

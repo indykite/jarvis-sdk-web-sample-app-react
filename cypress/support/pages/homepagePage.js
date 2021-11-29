@@ -5,28 +5,20 @@ export class HomepagePage {
     return cy.get("#start-btn");
   }
 
-  get CZBtn() {
-    return cy.get("#cz_lan");
-  }
-
   get customUIBtn() {
     return cy.get("#custom");
+  }
+
+  get builtInBtn() {
+    return cy.get("#built-in");
   }
 
   get customUIPage() {
     return cy.get(".App > :nth-child(3)");
   }
 
-  get buildInUIPage() {
+  get builtInUIPage() {
     return cy.get("#IKUISDK-content-container > :nth-child(1)");
-  }
-
-  get passwordText() {
-    return cy.get(".App > :nth-child(3) > :nth-child(3)");
-  }
-
-  get loginBtn() {
-    return cy.get("#IKUISDK-btn-login");
   }
 }
 
