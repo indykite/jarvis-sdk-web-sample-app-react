@@ -3,7 +3,6 @@ import { homepageURL } from "../../support/helpers/helpers";
 
 describe("homepage check", () => {
   beforeEach(() => {
-    cy.viewport(924, 1059);
     cy.visit(homepageURL);
   });
 

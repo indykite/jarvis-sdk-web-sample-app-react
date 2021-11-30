@@ -5,16 +5,10 @@ import { checkForgottenPasswordInput, homepageURL } from "../../support/helpers/
 
 describe("forgotten password check", () => {
   beforeEach(() => {
-    cy.viewport(924, 1059);
     cy.visit(homepageURL);
     ForgottenPasswordPage.startBtn.click();
     ForgottenPasswordPage.forgotPasswordBtn.click();
   });
-
-  /** checkForgottenPasswordInput
-   * @email {string} your e-mail
-   * @alertKeyWord {string} a key word of the alert
-   */
 
   it("should show an alert with an e-mail sent", () => {
     checkForgottenPasswordInput("martin.minasjan@profiq.com", "instructions");

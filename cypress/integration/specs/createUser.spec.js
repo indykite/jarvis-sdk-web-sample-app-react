@@ -5,22 +5,13 @@ import { checkNewUser, homepageURL } from "../../support/helpers/helpers";
 
 describe("create user check", () => {
   beforeEach(() => {
-    cy.viewport(924, 1059);
     cy.visit(homepageURL);
     CreateUserPage.startBtn.click();
     CreateUserPage.forgotPasswordBtn.click();
   });
 
-  /** checkNewUser
-   * @email {string} your e-mail
-   * @password1 {string} your password
-   * @password2 {string} password confirmation
-   * @alertKeyWord {string} a key word of the alert
-   * @correctInput {boolean} is this input valid?
-   */
-
   it("should successfuly add a new user", () => {
-    checkNewUser(`${Date.now()}@seznam.cz`, "a password", "a password", "", true);
+    checkNewUser(`wonka-test+${Date.now()}@indykite.com`, "a password", "a password", "", true);
   });
 
   it("should throw an existing username alert", () => {
@@ -48,7 +39,7 @@ describe("create user check", () => {
   });
 
   it("should show a blank username alert", () => {
-    checkNewUser("", "a password", "a different password", "confirmation failed", false);
+    checkNewUser("", "a password", "a password", "username", false);
   });
 
   it("should show a blank password1 alert", () => {

@@ -4,26 +4,16 @@ import { checkLogin, homepageURL } from "../../support/helpers/helpers";
 
 describe("login check", () => {
   beforeEach(() => {
-    cy.viewport(924, 1059);
     cy.visit(homepageURL);
     LoginPage.startBtn.click();
   });
 
-  /** checkLogin
-   * @email {string} your e-mail
-   * @password {string} your password
-   * @correctlyLogged {boolean} will this configuration log you in?
-   * In case we do not log in properly:
-   * @alertKeyWord {string} a key word of the alert
-   * @secondKeyWord {string} an optional second key word
-   */
-
   it("should correctly log in", () => {
-    checkLogin("martin.minasjan@profiq.com", "letmein", true, "");
+    checkLogin("wonka-test@indykite.com", "letmein", true, "");
   });
 
   it("should throw a wrong password alert", () => {
-    checkLogin("martin.minasjan@profiq.com", "doNOTletmein", false, "username", "password");
+    checkLogin("wonka-test@indykite.com", "doNOTletmein", false, "username", "password");
   });
 
   it("should show a blank input alert", () => {
