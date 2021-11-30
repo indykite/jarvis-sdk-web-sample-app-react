@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router";
+import React from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
 import { IKUIInit, IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 // Locals
@@ -22,7 +21,6 @@ function App() {
   const defaultLanguage = localStorage.getItem("idsdk-lan");
 
   const history = useHistory();
-  const location = useLocation();
   const [token, setToken] = React.useState(null);
   const [refreshToken, setRefreshToken] = React.useState(null);
   const [state, setState] = React.useState(defaultUi || "built-in"); // built-in or custom
@@ -82,15 +80,6 @@ function App() {
     localStorage.clear();
     localStorage.setItem("whatUiToUse", uiSwitch);
   }, []);
-
-  useEffect(() => {
-    if (location.pathname === "/") {
-      const urlParams = new URLSearchParams(location.search);
-      if (urlParams.has("login_challenge")) {
-        history.push(`/login/callback/${location.search}`);
-      }
-    }
-  }, [history, location]);
 
   return (
     <Switch>
@@ -172,7 +161,7 @@ function App() {
                 <SetNewPassword setToken={setToken} />
               )}
             </Route>
-            <Route path="/login/callback">
+            <Route path="/login/oauth2">
               <Oidc />
             </Route>
             <Route path="/registration">
