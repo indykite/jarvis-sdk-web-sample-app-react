@@ -11,7 +11,7 @@ describe("forgotten password check", () => {
   });
 
   it("should show an alert with an e-mail sent", () => {
-    checkForgottenPasswordInput("martin.minasjan@profiq.com", "instructions");
+    checkForgottenPasswordInput("wonka-test@indykite.com", "instructions");
   });
   it("should show an error of the mail not being in the DB", () => {
     // this one doesnt really work

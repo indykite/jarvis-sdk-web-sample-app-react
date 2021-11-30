@@ -15,13 +15,7 @@ describe("create user check", () => {
   });
 
   it("should throw an existing username alert", () => {
-    checkNewUser(
-      "martin.minasjan@profiq.com",
-      "a password",
-      "a password",
-      "already exist",
-      false,
-    );
+    checkNewUser("wonka-test@indykite.com", "a password", "a password", "already exist", false);
   });
 
   it("should throw an invalid email alert", () => {
@@ -30,7 +24,7 @@ describe("create user check", () => {
 
   it("should throw an inconsistent password alert", () => {
     checkNewUser(
-      "martin.minasjan@profiq.com",
+      "wonka-test@indykite.com",
       "a password",
       "a different password",
       "confirmation failed",
@@ -44,7 +38,7 @@ describe("create user check", () => {
 
   it("should show a blank password1 alert", () => {
     checkNewUser(
-      "martin.minasjan@profiq.com",
+      "wonka-test@indykite.com",
       "a different password",
       "",
       "confirmation failed",
@@ -53,7 +47,7 @@ describe("create user check", () => {
   });
 
   it("should show a blank password2 alert", () => {
-    checkNewUser("martin.minasjan@profiq.com", "", "a password", "confirmation failed.", false);
+    checkNewUser("wonka-test@indykite.com", "", "a password", "confirmation failed.", false);
   });
 
   it("should go back to the homepage", () => {
