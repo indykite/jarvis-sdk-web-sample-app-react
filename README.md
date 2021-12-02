@@ -1,6 +1,6 @@
 # Sample React App with Indykite UI-SDK
 
-IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com/platform) Client SDK.
+IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com) Client SDK.
 
 This library contains multiple client libraries for each service of the platform.
 
@@ -33,7 +33,7 @@ Visit the IndyKite One Developer Community site for official [IndyKite documenta
 
 ### Trial
 
-For a trial please contact [IndyKite](https://indykite.com/trial) to setup and
+For a trial please contact [IndyKite](https://www.indykite.com/contact-us) to setup and
 configure the platform.
 
 This project is using yarn workspace. Which means multiple projects are hosted in the `/packages/` folder.  
