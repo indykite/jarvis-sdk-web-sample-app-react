@@ -1,17 +1,23 @@
 /// <reference types="cypress" />
 
 import CreateUserPage from "../../support/pages/createUserPage";
-import { checkNewUser, homepageURL } from "../../support/helpers/helpers";
+import { checkNewUser } from "../../support/helpers/helpers";
 
 describe("create user check", () => {
   beforeEach(() => {
-    cy.visit(homepageURL);
+    cy.visit("/");
     CreateUserPage.startBtn.click();
     CreateUserPage.forgotPasswordBtn.click();
   });
 
   it("should successfuly add a new user", () => {
-    checkNewUser(`wonka-test+${Date.now()}@indykite.com`, "a password", "a password", "", true);
+    checkNewUser(
+      `automation_wonka-test+${Date.now()}@indykite.com`,
+      "a password",
+      "a password",
+      "",
+      true,
+    );
   });
 
   it("should throw an existing username alert", () => {

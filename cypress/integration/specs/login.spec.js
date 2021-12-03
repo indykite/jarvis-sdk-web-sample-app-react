@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 import LoginPage from "../../support/pages/loginPage.js";
-import { checkLogin, homepageURL } from "../../support/helpers/helpers";
+import { checkLogin } from "../../support/helpers/helpers";
 
 describe("login check", () => {
   beforeEach(() => {
-    cy.visit(homepageURL);
+    cy.visit("/");
     LoginPage.startBtn.click();
   });
 

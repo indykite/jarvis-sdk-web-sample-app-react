@@ -4,8 +4,6 @@ import CreateUserPage from "../../support/pages/createUserPage";
 import ForgottenPasswordPage from "../pages/forgottenPasswordPage";
 import LoginPage from "../pages/loginPage.js";
 
-export const homepageURL = "http://localhost:3000";
-
 /** checkNewUser
  * @email {string} your e-mail
  * @password1 {string} your password
