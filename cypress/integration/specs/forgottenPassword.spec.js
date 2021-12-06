@@ -20,7 +20,7 @@ describe("forgotten password check", () => {
   });
 
   it.skip("should prompt the user for the e-mail", () => {
-    // this one fails!
+    // https://app.clickup.com/t/2556282/IK-1894
     checkForgottenPasswordInput("", "enter your email");
   });
 
