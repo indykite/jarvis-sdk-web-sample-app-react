@@ -24,7 +24,11 @@ const Callback = ({ setToken }) => {
     // It's important that oidcCallback is called just once, multiple calls can end up with errors
     IKUIOidc.oidcCallback()
       .then((data) => {
-        history.push("/authenticated");
+        if (data.redirect_to) {
+          window.location.href = data.redirect_to;
+        } else {
+          history.push("/authenticated");
+        }
         // You can save the token in your app in case you need it but UISDK can handle all this for you
         // so theoretically you don't need to manage tokens yourself.
         setToken(data);
