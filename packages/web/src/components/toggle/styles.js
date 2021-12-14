@@ -2,8 +2,16 @@ const getBackgroundColor = (disabled) => {
   return disabled ? "#595E65" : "#1D2229";
 };
 
-const getHandlerColor = ({ disabled, toggled }) => {
-  return disabled ? "#BAE0D0" : toggled ? "#6AD48A" : "white";
+const getHandlerColor = ({ disabled, hover, toggled }) => {
+  if (disabled) {
+    return toggled ? "#BAE0D0" : "#B6C2D4";
+  }
+
+  if (hover) {
+    return toggled ? "#56C076" : "#B6C2D4";
+  }
+
+  return toggled ? "#6AD48A" : "#FFFFFF";
 };
 
 export const getToggleWrapperStyle = ({ disabled }) => ({
@@ -16,14 +24,14 @@ export const getToggleWrapperStyle = ({ disabled }) => ({
   cursor: "pointer",
 });
 
-export const getToggleHandlerStyle = ({ disabled, toggled }) => ({
+export const getToggleHandlerStyle = ({ disabled, hover, toggled }) => ({
   display: "flex",
   position: "absolute",
   top: "3px",
   left: toggled ? "23px" : "3px",
   width: "14px",
   height: "14px",
-  backgroundColor: getHandlerColor({ disabled, toggled }),
+  backgroundColor: getHandlerColor({ disabled, hover, toggled }),
   borderRadius: "3px",
   transition: "left 0.5s, background-color 0.5s",
 });
