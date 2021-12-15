@@ -1,11 +1,28 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { getToggleHandlerStyle, getToggleWrapperStyle } from "./styles";
 
 const Toggle = ({ disabled, toggled, onClick }) => {
+  const [hover, setHover] = useState(false);
+  const toggleWrapperEl = useRef(null);
+
+  const mouseEnterHandler = useCallback(() => {
+    setHover(true);
+  }, []);
+
+  const mouseLeaveHandler = useCallback(() => {
+    setHover(false);
+  }, []);
+
   return (
-    <div style={getToggleWrapperStyle({ disabled, toggled })} onClick={onClick}>
-      <div style={getToggleHandlerStyle({ disabled, toggled })} />
+    <div
+      ref={toggleWrapperEl}
+      style={getToggleWrapperStyle({ disabled, hover, toggled })}
+      onClick={onClick}
+      onMouseEnter={mouseEnterHandler}
+      onMouseLeave={mouseLeaveHandler}
+    >
+      <div style={getToggleHandlerStyle({ disabled, hover, toggled })} />
     </div>
   );
 };
