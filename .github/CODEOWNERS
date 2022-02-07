@@ -1,0 +1,6 @@
+# Global rule:
+* @indykite/indykite
+
+/packages/** @dusan-kovacik-profiq
+
+/.github/** @indykite/actions
