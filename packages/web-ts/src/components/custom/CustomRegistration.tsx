@@ -99,8 +99,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
                   redirectUri,
                   loginApp: loginApps[opt["@id"]],
                 })
-              }
-            >
+              }>
               {opt.prv}
             </button>
           </React.Fragment>
