@@ -44,21 +44,21 @@
         {
           "source": "/meta{,/**}",
           "run": {
-            "serviceId": "go-sdk-wonka-dev",
+            "serviceId": "go-sdk-wonka-stg",
             "region": "europe-west1"
           }
         },
         {
           "source": "/go{,/**}",
           "run": {
-            "serviceId": "go-sdk-wonka-dev",
+            "serviceId": "go-sdk-wonka-stg",
             "region": "europe-west1"
           }
         },
         {
           "source": "/node{,/**}",
           "run": {
-            "serviceId": "node-sdk-wonka-dev",
+            "serviceId": "node-sdk-wonka-stg",
             "region": "europe-west1"
           }
         },
@@ -95,6 +95,42 @@
           "source": "/node{,/**}",
           "run": {
             "serviceId": "node-sdk-slugworth-dev",
+            "region": "europe-west1"
+          }
+        },
+        {
+          "source": "/python{,/**}",
+          "destination": "/TODO.html"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "slugworth-stg",
+      "public": "packages/web/build",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "/meta{,/**}",
+          "run": {
+            "serviceId": "go-sdk-slugworth-stg",
+            "region": "europe-west1"
+          }
+        },
+        {
+          "source": "/go{,/**}",
+          "run": {
+            "serviceId": "go-sdk-slugworth-stg",
+            "region": "europe-west1"
+          }
+        },
+        {
+          "source": "/node{,/**}",
+          "run": {
+            "serviceId": "node-sdk-slugworth-stg",
             "region": "europe-west1"
           }
         },

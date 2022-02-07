@@ -16,6 +16,9 @@
         ],
         "slugworth-dev": [
           "slugworth-dev"
+        ],
+        "slugworth-stg": [
+          "slugworth-stg"
         ]
       }
     }
