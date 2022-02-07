@@ -8,7 +8,7 @@ import ForgottenPassword from "./components/ForgotPassword";
 import CustomSetNewPassword from "./components/custom/CustomSetNewPassword";
 import SetNewPassword from "./components/SetNewPassword";
 import Oidc, { Callback } from "./components/Oidc";
-import CustomRegistrsation from "./components/custom/CustomRegistrsation";
+import CustomRegistration from "./components/custom/CustomRegistration";
 import Registration from "./components/Registration";
 import CustomLogin from "./components/custom/CustomLogin";
 import Login from "./components/Login";
@@ -162,7 +162,7 @@ const App: React.FC = () => {
         </Route>
         <Route path="/registration">
           {state === "custom" ? (
-            <CustomRegistrsation setToken={setToken} />
+            <CustomRegistration setToken={setToken} />
           ) : (
             <Registration setToken={setToken} />
           )}
