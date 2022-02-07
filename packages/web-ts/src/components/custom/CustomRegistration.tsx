@@ -69,6 +69,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
         id="custom-password"
         name="custom-password"
         style={{ color: "black" }}
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -78,6 +79,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
         id="custom-confirm-password"
         name="custom-confirm-password"
         style={{ color: "black" }}
+        type="password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
