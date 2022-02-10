@@ -1,10 +1,10 @@
 # Global rule:
-* @indykite/indykite
+* @indykite/indykite @dusan-kovacik-profiq @hanny21 @minasjam
 
 # Application owner rule
-/packages/** @dusan-kovacik-profiq
+/packages/** @indykite/indykite @dusan-kovacik-profiq @hanny21 @minasjam
 
 # Tests owner rule
 /cypress/** @minasjam
 
-/.github/** @indykite/actions
+/.github/** @indykite/actions @maprokes
