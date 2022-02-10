@@ -1364,10 +1364,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@indykiteone/jarvis-sdk-web@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.1.9.tgz#d28c949b7450db8c9130c149a1dd051e9becee51"
-  integrity sha512-50WtjguoTPL6sOl1dBefmIbThQ4/1CsNuu8QywXbFB27meN0gYmFEkYUERnQWVWqTYhiybtMDee6eZ0y3+flKw==
+"@indykiteone/jarvis-sdk-web@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.1.11.tgz#d49c3756ffe3100f056bd2f72b215a1879c6b445"
+  integrity sha512-fut5C2JlPI4/ktdYMBdrsubNrCow4/cpxCqMkWTaq71IyRwiyr7OxbVeFnJ94dBw8GgGrFaU+2z8VOWaCxImHA==
   dependencies:
     axios "^0.21.1"
     core-js "^3.16.0"
