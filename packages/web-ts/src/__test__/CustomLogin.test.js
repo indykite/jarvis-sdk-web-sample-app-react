@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from "../../test-utils";
+import { render, screen, fireEvent } from "../../test-utils";
 import Login from '../components/custom/CustomLogin'
 import { IKUIUserAPI } from '@indykiteone/jarvis-sdk-web'
 
@@ -34,5 +34,18 @@ describe("All tests for custom login", () => {
 
         expect(container.querySelector("#custom-btn-to-registration")).toBeInTheDocument();
         expect(container.querySelector("#custom-btn-to-forgot-password")).toBeInTheDocument();
+    })
+    test("Test for input fields", () => {
+        const { container } = render(<Login/>)
+
+        fireEvent.change(container.querySelector("#custom-username"), {
+            target: { value: "myemail" },
+        });
+        expect(screen.getByDisplayValue("myemail")).toBeInTheDocument();
+
+        fireEvent.change(container.querySelector("#custom-password"), {
+            target: { value: "mypassword" },
+        });
+        expect(screen.getByDisplayValue("mypassword")).toBeInTheDocument();
     })
 })

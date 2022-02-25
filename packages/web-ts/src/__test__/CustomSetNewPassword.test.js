@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from "../../test-utils";
+import { render, screen, fireEvent } from "../../test-utils";
 import SetNewPassword from '../components/custom/CustomSetNewPassword'
 import { IKUIUserAPI } from '@indykiteone/jarvis-sdk-web'
 
@@ -18,5 +18,13 @@ describe('All tests for custom SetNewPassword', () => {
         const { container } =  render(<SetNewPassword/>)
         expect(container.querySelector("#custom-password")).toBeInTheDocument();
         expect(container.querySelector("#custom-send-btn")).toBeInTheDocument();
+    })
+    test("Test for input fields", () => {
+        const { container } = render(<SetNewPassword/>)
+
+        fireEvent.change(container.querySelector("#custom-password"), {
+            target: { value: "mypassword" },
+        });
+        expect(screen.getByDisplayValue("mypassword")).toBeInTheDocument();
     })
 })
