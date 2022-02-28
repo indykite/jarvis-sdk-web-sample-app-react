@@ -33,6 +33,8 @@ describe("All tests for custom registration", () => {
   test("Test for input fields", () => {
     const { container } = render(<Registration />);
 
+    //TODO: write test that checks that the SDK is actually triggered.
+
     fireEvent.change(container.querySelector("#custom-username"), {
       target: { value: "customusername" },
     });
@@ -49,3 +51,5 @@ describe("All tests for custom registration", () => {
     expect(screen.getByDisplayValue("custompassword2")).toBeInTheDocument();
   });
 });
+
+//TODO: write test that checks that the SDK errors is handled.

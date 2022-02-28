@@ -24,6 +24,8 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
 describe("All tests for custom login", () => {
   test("Test for general render", () => {
     const { container } = render(<Login />);
+    //TODO: write test that checks that the SDK is actually triggered.
+
     expect(screen.getByText("Email", { exact: true })).toBeInTheDocument();
     expect(container.querySelector("#custom-username")).toBeInTheDocument();
 
@@ -49,3 +51,5 @@ describe("All tests for custom login", () => {
     expect(screen.getByDisplayValue("mypassword")).toBeInTheDocument();
   });
 });
+
+//TODO: write test that checks that the SDK errors is handled.

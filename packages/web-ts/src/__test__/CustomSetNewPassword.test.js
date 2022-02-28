@@ -16,6 +16,7 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
 describe("All tests for custom SetNewPassword", () => {
   test("Test for general render", () => {
     const { container } = render(<SetNewPassword />);
+    //TODO: write test that checks that the SDK is actually triggered.
     expect(container.querySelector("#custom-password")).toBeInTheDocument();
     expect(container.querySelector("#custom-send-btn")).toBeInTheDocument();
   });
@@ -28,3 +29,5 @@ describe("All tests for custom SetNewPassword", () => {
     expect(screen.getByDisplayValue("mypassword")).toBeInTheDocument();
   });
 });
+
+//TODO: write test that checks that the SDK errors is handled.

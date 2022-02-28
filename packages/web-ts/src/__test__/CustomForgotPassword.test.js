@@ -16,6 +16,7 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
 describe("All tests for custom ForgotPassword", () => {
   test("Test for general render", () => {
     render(<ForgotPassword />);
+    //TODO: write test that checks that the SDK is actually triggered.
   });
   test("Test for input fields", () => {
     const { container } = render(<ForgotPassword />);
@@ -26,10 +27,6 @@ describe("All tests for custom ForgotPassword", () => {
     expect(screen.getByDisplayValue("myemail")).toBeInTheDocument();
   });
 
-  test("Click send reset password", async () => {
-    const { container } = render(<ForgotPassword />);
-
-    await fireEvent.click(container.querySelector("#custom-send-btn"));
-    expect(IKUIUserAPI.sendResetPasswordEmail).toBeCalled();
-  });
 });
+
+//TODO: write test that checks that the SDK errors is handled.
