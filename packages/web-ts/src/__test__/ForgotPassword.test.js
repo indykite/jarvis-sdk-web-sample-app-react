@@ -1,27 +1,26 @@
-import React from 'react'
+import React from "react";
 import { render } from "../../test-utils";
-import { IKUICore } from '@indykiteone/jarvis-sdk-web'
-import ForgotPassword from '../components/ForgotPassword'
+import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import ForgotPassword from "../components/ForgotPassword";
 
-
-jest.mock('@indykiteone/jarvis-sdk-web', () => {
-    const original = jest.requireActual('@indykiteone/jarvis-sdk-web');
-    return {
-        ...original,
-        IKUICore:{
-            renderForgotPasswordForm: jest.fn().mockImplementation(() => Promise.resolve())
-        }
-    }
-})
+jest.mock("@indykiteone/jarvis-sdk-web", () => {
+  const original = jest.requireActual("@indykiteone/jarvis-sdk-web");
+  return {
+    ...original,
+    IKUICore: {
+      renderForgotPasswordForm: jest.fn().mockImplementation(() => Promise.resolve()),
+    },
+  };
+});
 
 beforeEach(() => {
-    jest.clearAllMocks()
-})
+  jest.clearAllMocks();
+});
 
 describe("All tests for ForgotPassword", () => {
-    test("Test for general render", () => {
-        const { container } = render(<ForgotPassword/>)
-        expect(container.querySelector("#forgotten-password-container")).toBeInTheDocument();
-        expect(IKUICore.renderForgotPasswordForm).toBeCalled();
-    })
-})
+  test("Test for general render", () => {
+    const { container } = render(<ForgotPassword />);
+    expect(container.querySelector("#forgotten-password-container")).toBeInTheDocument();
+    expect(IKUICore.renderForgotPasswordForm).toBeCalled();
+  });
+});
