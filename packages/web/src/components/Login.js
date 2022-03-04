@@ -14,22 +14,21 @@ const Login = ({ setToken }) => {
   );
 
   useEffect(() => {
-    IKUICore.renderLogin({
+    IKUICore.render({
       renderElementSelector: ".login-container",
-      onSuccessLogin: onSuccess,
+      onSuccess: onSuccess,
       redirectUri: "/callback",
-      forgotPasswordPath: "/forgot",
       // labels: {
       //   username: "Custom Username",
       //   password: "Custom Password",
       //   loginButton: "Custom Login with us!",
-      //     registerButton: "Custom Register",
-      //     forgotPasswordButton: "custom Forgot Password",
-      //     orOtherOptions: "Custom you can also continue with"
-      // }
+      //   registerLinkButton: "Custom Register",
+      //   forgotPasswordButton: "custom Forgot Password",
+      //   orOtherOptions: "Custom you can also continue with",
+      // },
       loginApp: JSON.parse(process.env.REACT_APP_LOGIN_APPS || "{}"),
     });
-  });
+  }, [onSuccess]);
 
   return (
     <div>
