@@ -9,7 +9,7 @@ describe("login check", () => {
   });
 
   it("should correctly log in", () => {
-    checkLogin("wonka-test@indykite.com", "letmein", true, "");
+    checkLogin("wonka-cypress@indykite.com", "password123", true, "");
   });
 
   it("should throw a wrong password alert", () => {

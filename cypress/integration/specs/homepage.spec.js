@@ -5,8 +5,8 @@ describe("login check", () => {
   beforeEach(() => {
     cy.visit("/");
     HomepagePage.startBtn.click();
-    HomepagePage.usernameInput.type("wonka-test@indykite.com");
-    HomepagePage.passwordInput.type("letmein");
+    HomepagePage.usernameInput.type("wonka-cypress@indykite.com");
+    HomepagePage.passwordInput.type("password123");
     HomepagePage.loginBtn.click();
   });
 

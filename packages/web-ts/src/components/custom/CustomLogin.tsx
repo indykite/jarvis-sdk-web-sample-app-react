@@ -39,6 +39,11 @@ const Login: React.FC<IProps> = ({ setToken }) => {
 
       setSetupResponseData(loginSetupResponse);
       if (loginSetupResponse && loginSetupResponse["@type"]) setType(loginSetupResponse["@type"]);
+
+      return () => {
+        setType(null);
+        setSetupResponseData(null);
+      };
     };
 
     setup().catch(console.log);
@@ -59,7 +64,7 @@ const Login: React.FC<IProps> = ({ setToken }) => {
   }, [email, password, setupResponseData, onSuccess]);
 
   return (
-    <div>
+    <div className="App">
       {type !== "oidc" && (
         <>
           <h5>Email</h5>
