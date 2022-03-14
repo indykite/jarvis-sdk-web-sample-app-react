@@ -21,12 +21,6 @@ const defaultLanguage = localStorage.getItem("idsdk-lan");
 
 const LANGUAGES = ["EN", "CZ"];
 
-IKUIInit({
-  baseUri: process.env.REACT_APP_BASE_URI || "",
-  applicationId: process.env.REACT_APP_APPLICATION_ID || "",
-  tenantId: process.env.REACT_APP_TENANT_ID || "",
-});
-
 const App: React.FC = () => {
   const history = useHistory();
   const [token, setToken] = React.useState<DataTokenResponseType | null>(null);

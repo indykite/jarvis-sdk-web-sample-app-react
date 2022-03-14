@@ -1,20 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-import { IKUIInit } from "@indykiteone/jarvis-sdk-web";
+import InitApp from "./InitApp";
 import { BrowserRouter as Router } from "react-router-dom";
-
-IKUIInit({
-  baseUri: process.env.REACT_APP_BASE_URI,
-  applicationId: process.env.REACT_APP_APPLICATION_ID,
-  tenantId: process.env.REACT_APP_TENANT_ID,
-});
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <InitApp />
     </Router>
   </React.StrictMode>,
   document.getElementById("root"),
