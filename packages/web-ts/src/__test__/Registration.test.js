@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react'
 import Registration from "../components/Registration";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 import { render } from "../../test-utils";
-
-const mockOnSuccess = jest.fn();
 
 jest.mock("@indykiteone/jarvis-sdk-web", () => {
   const original = jest.requireActual("@indykiteone/jarvis-sdk-web");

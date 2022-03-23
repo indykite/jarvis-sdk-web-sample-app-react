@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { render } from "../../test-utils";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 import ForgotPassword from "../components/ForgotPassword";

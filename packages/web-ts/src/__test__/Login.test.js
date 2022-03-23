@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 import { render } from "../../test-utils";
 import Login from "../components/Login";
 
@@ -27,5 +28,6 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
 describe("All tests for login", () => {
   test("Test for general render", () => {
     render(<Login />);
+    expect(IKUICore.renderLogin).toBeCalled()
   });
 });
