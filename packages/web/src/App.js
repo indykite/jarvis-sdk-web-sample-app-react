@@ -54,7 +54,7 @@ function App() {
   };
 
   const onLogout = React.useCallback(() => {
-    IKUIUserAPI.logoutCurrentUser()
+    IKUIUserAPI.logoutUser()
       .then(() => {
         setToken(null);
         setRefreshToken(null);
