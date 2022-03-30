@@ -39,12 +39,12 @@ jobs:
           node-version: "12.x"
       - name: Setup Env Variables
         run: |
-          mv ./packages/web/.env-wonka ./packages/web/.env
+          mv ./packages/web/.env-wonka ./packages/web-ts/.env
       - name: Install Web Project
         run: yarn install
       - name: Build
         run: |
-          yarn web build
+          yarn web-ts build
       - name: Install FB Tools
         run: npm install -g firebase-tools
       - name: Deploy to Firebase
@@ -66,12 +66,12 @@ jobs:
           node-version: "12.x"
       - name: Setup Env Variables
         run: |
-          mv ./packages/web/.env-wonka-stg ./packages/web/.env
+          mv ./packages/web/.env-wonka-stg ./packages/web-ts/.env
       - name: Install Web Project
         run: yarn install
       - name: Build
         run: |
-          yarn web build
+          yarn web-ts build
       - name: Install FB Tools
         run: npm install -g firebase-tools
       - name: Deploy to Firebase
@@ -93,12 +93,12 @@ jobs:
           node-version: "12.x"
       - name: Setup Env Variables
         run: |
-          mv ./packages/web/.env-slugworth ./packages/web/.env
+          mv ./packages/web/.env-slugworth ./packages/web-ts/.env
       - name: Install Web Project
         run: yarn install
       - name: Build
         run: |
-          yarn web build
+          yarn web-ts build
       - name: Install FB Tools
         run: npm install -g firebase-tools
       - name: Deploy to Firebase

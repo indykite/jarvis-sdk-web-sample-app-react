@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "wonka-dev",
-      "public": "packages/web/build",
+      "public": "packages/web-ts/build",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -38,7 +38,7 @@
     },
     {
       "target": "wonka-stg",
-      "public": "packages/web/build",
+      "public": "packages/web-ts/build",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -74,7 +74,7 @@
     },
     {
       "target": "slugworth-dev",
-      "public": "packages/web/build",
+      "public": "packages/web-ts/build",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
