@@ -263,16 +263,6 @@
   background: none !important;
 }
 
-.indykite-sdk-container
-  .full-view-container
-  .full-login-container
-  .indykite-login-section
-  .indykite-login-container
-  .inner-indykite-login-container
-  label {
-  display: none !important;
-}
-
 .indykite-sdk-container .copyright-container {
   width: 100%;
   text-align: center;
