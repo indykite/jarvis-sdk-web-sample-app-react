@@ -7,7 +7,8 @@ describe("create user check", () => {
   beforeEach(() => {
     cy.visit("/");
     CreateUserPage.startBtn.click();
-    CreateUserPage.forgotPasswordBtn.click();
+    CreateUserPage.registerBtn.trigger("click");
+    CreateUserPage.confirmPasswordInput.should("exist").should("be.visible");
   });
 
   it("should successfuly add a new user", () => {
@@ -54,10 +55,5 @@ describe("create user check", () => {
 
   it("should show a blank password2 alert", () => {
     checkNewUser("wonka-test@indykite.com", "", "a password", "confirmation failed.", false);
-  });
-
-  it("should go back to the homepage", () => {
-    CreateUserPage.alreadyHaveAccountBtn.click();
-    cy.url().should("contain", "/login");
   });
 });

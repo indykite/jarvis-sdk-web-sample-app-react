@@ -16,14 +16,14 @@ export function checkNewUser(email, password1, password2, alertKeyWord, correctI
   email && CreateUserPage.usernameInput.type(email);
   password1 && CreateUserPage.passwordInput.type(password1);
   password2 && CreateUserPage.confirmPasswordInput.type(password2);
-  CreateUserPage.registerBtn.click();
+  CreateUserPage.signupBtn.click();
 
   if (correctInput) {
     checkToken();
   } else {
-    CreateUserPage.notificationText.should("exist");
-    alertKeyWord && CreateUserPage.notificationText.should("contain", alertKeyWord);
-    alertKeyWord && CreateUserPage.notificationText.should("have.css", "color", "rgb(255, 0, 0)"); // rgb(255,0,0) is the red color
+    CreateUserPage.notificationContainer.should("exist");
+    //alertKeyWord && CreateUserPage.notificationText.should("contain", alertKeyWord);
+    //alertKeyWord && CreateUserPage.notificationText.should("have.css", "color", "rgb(255, 0, 0)"); // rgb(255,0,0) is the red color
   }
 }
 
