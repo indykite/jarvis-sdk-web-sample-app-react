@@ -22,7 +22,7 @@ export class ForgottenPasswordPage {
   }
 
   get backToLoginBtn() {
-    return cy.get("a");
+    return cy.get("#IKUISDK-btn-to-login > a");
   }
 }
 

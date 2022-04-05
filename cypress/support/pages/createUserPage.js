@@ -6,7 +6,7 @@ export class CreateUserPage {
   }
 
   get forgotPasswordBtn() {
-    return cy.get("#IKUISDK-btn-to-registration > a");
+    return cy.get("#IKUISDK-btn-to-forgot-password");
   }
 
   get usernameInput() {
@@ -22,7 +22,15 @@ export class CreateUserPage {
   }
 
   get registerBtn() {
+    return cy.get("#IKUISDK-btn-to-registration > a");
+  }
+
+  get signupBtn() {
     return cy.get("#IKUISDK-btn-register");
+  }
+
+  get notificationContainer(){
+    return cy.get("#IKUISDK-notification-container");
   }
 
   get notificationText() {
@@ -30,7 +38,7 @@ export class CreateUserPage {
   }
 
   get alreadyHaveAccountBtn() {
-    return cy.get("a");
+    return cy.get("#IKUISDK-btn-to-login>a");
   }
 }
 
