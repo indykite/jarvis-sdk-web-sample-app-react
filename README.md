@@ -47,20 +47,13 @@ The hosted projects are:
 
 1. Copy file `/packages/web/.env-example` as `/packages/web/.env` or `/packages/web-ts/.env`
 
-Fill in the variables where the sample app should be connected. Either directly or by providing a credentials file.
+Fill in the variables where the sample app should be connected.
 
 ```javascript
-# Providing values directly
 REACT_APP_BASE_URI = "";
 REACT_APP_TENANT_ID = "";
 REACT_APP_APPLICATION_ID = "";
-
-# Reading values from a credentials file
-REACT_APP_INDYKITE_APPLICATION_CREDENTIALS_FILE=/app_credentials.json
 ```
-Note: If using `REACT_APP_INDYKITE_APPLICATION_CREDENTIALS_FILE`, the credential file must added to the `public` folder
-
-
 
 2. Run `yarn`
 3. Run `yarn web start`
