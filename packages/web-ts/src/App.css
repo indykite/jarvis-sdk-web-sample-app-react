@@ -236,6 +236,13 @@
   margin: 0 auto;
   justify-content: center;
   display: block;
+  color: #ede8e1;
+}
+
+.indykite-sdk-container .full-view-container .full-login-container .responseWrapper p {
+  width: auto;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .indykite-sdk-container .full-view-container .full-login-container > div input {
