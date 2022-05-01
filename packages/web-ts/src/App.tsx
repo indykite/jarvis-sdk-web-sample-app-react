@@ -76,7 +76,7 @@ const App: React.FC = () => {
   }, [history]);
 
   const onRefreshToken = React.useCallback(() => {
-    IKUIUserAPI.getValidAccessToken()
+    IKUIUserAPI.refreshAccessToken()
       .then((token) => {
         setRefreshToken(token);
         setToken(null);
