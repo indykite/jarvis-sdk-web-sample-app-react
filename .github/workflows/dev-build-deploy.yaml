@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - name: Install Web Project
         run: yarn install
       - name: Build TypeScript
@@ -36,7 +36,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - name: Setup Env Variables
         run: |
           mv ./packages/web/.env-wonka ./packages/web-ts/.env
@@ -63,7 +63,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - name: Setup Env Variables
         run: |
           mv ./packages/web/.env-wonka-stg ./packages/web-ts/.env
@@ -90,7 +90,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - name: Setup Env Variables
         run: |
           mv ./packages/web/.env-slugworth ./packages/web-ts/.env
