@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@master
         with:
-          node-version: "12.x"
+          node-version: "16.x"
       - name: Setup Env Variables
         run: |
           mv ./packages/web/.env-wonka ./packages/web/.env
