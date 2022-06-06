@@ -7,7 +7,7 @@ describe("create user check", () => {
   beforeEach(() => {
     cy.visit("/");
     CreateUserPage.startBtn.click();
-    CreateUserPage.registerBtn.trigger("click");
+    CreateUserPage.registerBtn.click();
     CreateUserPage.confirmPasswordInput.should("exist").should("be.visible");
   });
 
@@ -26,7 +26,7 @@ describe("create user check", () => {
   });
 
   it("should throw an invalid email alert", () => {
-    checkNewUser(`1234`, "a password", "a password", "valid email", false);
+    checkNewUser("abcd", "a password", "a password", "valid email", false);
   });
 
   it("should throw an inconsistent password alert", () => {

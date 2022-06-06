@@ -9,6 +9,9 @@ jobs:
   cypress-check-web:
     name: Cypress check Web
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.5.0-chrome97-ff96
+      # options: --user 1001
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
@@ -18,13 +21,22 @@ jobs:
           node-version: "16.x"
       - name: Setup Env Variables
         run: |
-          mv ./packages/web/.env-wonka ./packages/web/.env
+          mv ./packages/web-ts/.env-wonka ./packages/web-ts/.env
       - name: Install Web Project
         run: yarn install
+      - run: chown -R 1001:1001 /github/home/.cache
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         timeout-minutes: 10
         with:
-          start: yarn web start
+          start: yarn web-ts start
+          config-file: cypress.config.js
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
           browser: chrome
-          headless: true
+          record: true
+        env:
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: "cypress:server:args"

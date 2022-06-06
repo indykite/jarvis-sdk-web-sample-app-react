@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 
 const ForgottenPassword = () => {

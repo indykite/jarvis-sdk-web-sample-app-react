@@ -21,7 +21,7 @@ describe("login check", () => {
   });
 
   it("should show a blank password alert", () => {
-    checkLogin("martíenk", "", false, "non blank", "password");
+    checkLogin("username", "", false, "non blank", "password");
   });
 
   it("should show a blank username alert", () => {
@@ -31,22 +31,22 @@ describe("login check", () => {
   //check if buttons to third parties sites are on the page
   it("should check if a Google button with exists", () => {
     LoginPage.googleBtn.should("exist");
-    LoginPage.googleBtn.should("have.text", "google");
+    LoginPage.googleBtn.should("contain", "Google");
   });
 
   it("should check if a Facebook button exists", () => {
     LoginPage.facebookBtn.should("exist");
-    LoginPage.facebookBtn.should("have.text", "facebook");
+    LoginPage.facebookBtn.should("contain", "Facebook");
   });
 
   it("should check if a Microsoft button exists", () => {
     LoginPage.microsoftBtn.should("exist");
-    LoginPage.microsoftBtn.should("have.text", "microsoft");
+    LoginPage.microsoftBtn.should("contain", "Microsoft");
   });
 
   it("should check if a LinkedIn button exists", () => {
     LoginPage.linkedinBtn.should("exist");
-    LoginPage.linkedinBtn.should("have.text", "linkedin");
+    LoginPage.linkedinBtn.should("contain", "LinkedIn");
   });
 
   it("should check if a Slugworth button exists", () => {
@@ -56,7 +56,7 @@ describe("login check", () => {
 
   it("should check if an Indykite.me button exists", () => {
     LoginPage.indykiteMeBtn.should("exist");
-    LoginPage.indykiteMeBtn.should("have.text", "indykite.me");
+    LoginPage.indykiteMeBtn.should("contain", "indykite.me");
   });
 
   /* The code below can be used if to want to test logging in through a third party website. However
