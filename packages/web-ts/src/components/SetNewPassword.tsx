@@ -8,15 +8,17 @@ const SetNewPassword = () => {
   }>();
 
   React.useEffect(() => {
-    IKUICore.renderSetNewPasswordForm({
-      renderElementSelector: "#set-new-password-container",
-      token: referenceId,
-      labels: {
-        newPassword: "Custom Password",
-        confirmNewPassword: "Custom Password confirm",
-        submitButton: "Custom set new password",
-      },
-    });
+    if (referenceId) {
+      IKUICore.renderSetNewPasswordForm({
+        renderElementSelector: "#set-new-password-container",
+        token: referenceId,
+        labels: {
+          newPassword: "Custom Password",
+          confirmNewPassword: "Custom Password confirm",
+          submitButton: "Custom set new password",
+        },
+      });
+    }
   });
 
   return (

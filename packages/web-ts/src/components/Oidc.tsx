@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DataTokenResponseType, IKUIOidc } from "@indykiteone/jarvis-sdk-web";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // This is used when Indykite is the provider
 const Oidc = () => {
@@ -21,14 +21,14 @@ interface IProps {
 
 // This is where FB, Google and other providers can redirect you
 const Callback: React.FC<IProps> = ({ setToken }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
   React.useEffect(() => {
     // It's important that oidcCallback is called just once, multiple calls can end up with errors
     IKUIOidc.oidcCallback()
       .then((data) => {
-        history.push("/authenticated");
+        navigate("/authenticated");
         // You can save the token in your app in case you need it but UISDK can handle all this for you
         // so theoretically you don't need to manage tokens yourself.
         setToken(data);
@@ -38,7 +38,7 @@ const Callback: React.FC<IProps> = ({ setToken }) => {
         // TODO: We should consider handling this error using UI SDK so the devs don't need to
         setError(JSON.stringify(e));
       });
-  }, [history, setToken]);
+  }, [navigate, setToken]);
 
   return (
     <div>

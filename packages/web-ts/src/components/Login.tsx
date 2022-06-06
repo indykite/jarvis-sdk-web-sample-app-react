@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DataTokenResponseType, IKUICore } from "@indykiteone/jarvis-sdk-web";
 
 interface IProps {
@@ -7,20 +7,20 @@ interface IProps {
 }
 
 const Login: React.FC<IProps> = ({ setToken }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const onSuccess = React.useCallback(
-    (data) => {
+    (data: any) => {
       setToken(data);
-      history.push("/authenticated");
+      navigate("/authenticated");
     },
-    [setToken, history],
+    [setToken, navigate],
   );
 
   useEffect(() => {
-    IKUICore.renderLogin({
+    IKUICore.render({
       renderElementSelector: ".login-container",
-      onSuccessLogin: onSuccess,
+      onSuccess: onSuccess,
       redirectUri: "/callback",
       forgotPasswordPath: "/forgot",
       labels: {

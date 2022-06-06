@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   IKUIOidc,
   IKUIUserAPI,
@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const Registration: React.FC<IProps> = ({ setToken }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -27,11 +27,11 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
   const redirectUri = "/callback";
 
   const onSuccess = React.useCallback(
-    (data) => {
+    (data: any) => {
       setToken(data);
-      history.push("/authenticated");
+      navigate("/authenticated");
     },
-    [setToken, history],
+    [setToken, navigate],
   );
 
   const handleOnRegister = React.useCallback(() => {
@@ -101,8 +101,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
                   redirectUri,
                   loginApp: loginApps[opt["@id"]],
                 })
-              }
-            >
+              }>
               {opt.prv}
             </button>
           </React.Fragment>
