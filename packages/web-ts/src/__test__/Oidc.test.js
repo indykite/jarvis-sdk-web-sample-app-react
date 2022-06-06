@@ -1,4 +1,3 @@
-import React from "react";
 import { render } from "../../test-utils";
 import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
 import Oidc from "../components/Oidc";

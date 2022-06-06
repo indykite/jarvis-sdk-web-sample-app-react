@@ -9,7 +9,9 @@ const SetNewPassword = () => {
   const [newPassword, setNewPassword] = React.useState("");
 
   const handleOnSubmit = React.useCallback(() => {
-    IKUIUserAPI.sendNewPassword(referenceId, newPassword).then(console.log).catch(console.log);
+    if (referenceId) {
+      IKUIUserAPI.sendNewPassword(referenceId, newPassword).then(console.log).catch(console.log);
+    }
   }, [referenceId, newPassword]);
 
   return (

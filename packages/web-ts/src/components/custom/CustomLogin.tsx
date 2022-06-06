@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   DataTokenResponseType,
   IKUIOidc,
@@ -17,7 +17,7 @@ interface IProps {
 const redirectUri = "/callback";
 
 const Login: React.FC<IProps> = ({ setToken }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [setupResponseData, setSetupResponseData] = React.useState<LoginSetupDataType | null>(
@@ -50,11 +50,11 @@ const Login: React.FC<IProps> = ({ setToken }) => {
   }, []);
 
   const onSuccess = React.useCallback(
-    (data) => {
+    (data: any) => {
       setToken(data);
-      history.push("/authenticated");
+      navigate("/authenticated");
     },
-    [setToken, history],
+    [setToken, navigate],
   );
 
   const handleOnLogin = React.useCallback(() => {
@@ -90,14 +90,11 @@ const Login: React.FC<IProps> = ({ setToken }) => {
             Login
           </button>
           <br />
-          <button id="custom-btn-to-registration" onClick={() => history.push("/registration")}>
+          <button id="custom-btn-to-registration" onClick={() => navigate("/registration")}>
             Create new account
           </button>
           <br />
-          <button
-            id="custom-btn-to-forgot-password"
-            onClick={() => history.push("/forgot/password")}
-          >
+          <button id="custom-btn-to-forgot-password" onClick={() => navigate("/forgot/password")}>
             Forgot password
           </button>
         </>
@@ -129,8 +126,7 @@ const Login: React.FC<IProps> = ({ setToken }) => {
                     redirectUri,
                     loginApp: loginApps[opt["@id"]],
                   })
-                }
-              >
+                }>
                 {opt.prv}
               </button>
             </React.Fragment>
@@ -144,8 +140,7 @@ const Login: React.FC<IProps> = ({ setToken }) => {
           <br />
           <button
             id={`custom-btn-oidc-${setupResponseData.prv}`}
-            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}
-          >
+            onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}>
             {setupResponseData.prv}
           </button>
         </>

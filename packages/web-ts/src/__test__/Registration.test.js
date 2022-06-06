@@ -1,4 +1,3 @@
-import React from "react";
 import Registration from "../components/Registration";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 import { render } from "../../test-utils";
@@ -8,7 +7,7 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
   return {
     ...original,
     IKUICore: {
-      renderRegister: jest.fn().mockImplementation(() => Promise.resolve()),
+      render: jest.fn().mockImplementation(() => Promise.resolve()),
     },
   };
 });
@@ -16,6 +15,6 @@ jest.mock("@indykiteone/jarvis-sdk-web", () => {
 describe("All tests for registration", () => {
   test("Test for general render", () => {
     render(<Registration />);
-    expect(IKUICore.renderRegister).toBeCalled();
+    expect(IKUICore.render).toBeCalled();
   });
 });

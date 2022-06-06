@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { IKUIInit, IKUIUserAPI, DataTokenResponseType } from "@indykiteone/jarvis-sdk-web";
 import { ReactComponent as ArrowDown } from "./assets/arrow-down.svg";
 
@@ -28,7 +28,7 @@ IKUIInit({
 });
 
 const App: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [token, setToken] = React.useState<DataTokenResponseType | null>(null);
   const [refreshToken, setRefreshToken] = React.useState<string | null>(null);
   const [state, setState] = React.useState(defaultUi || "built-in"); // built-in or custom
@@ -66,14 +66,14 @@ const App: React.FC = () => {
   };
 
   const onLogout = React.useCallback(() => {
-    IKUIUserAPI.logoutCurrentUser()
+    IKUIUserAPI.logoutUser()
       .then(() => {
         setToken(null);
         setRefreshToken(null);
-        history.push("/login");
+        navigate("/login");
       })
       .catch(console.log);
-  }, [history]);
+  }, [navigate]);
 
   const onRefreshToken = React.useCallback(() => {
     IKUIUserAPI.refreshAccessToken()
@@ -85,9 +85,9 @@ const App: React.FC = () => {
   }, []);
 
   const onLoginStart = React.useCallback(() => {
-    const uiSwitch = localStorage.getItem("whatUiToUse");
+    const uiRoutes = localStorage.getItem("whatUiToUse");
     localStorage.clear();
-    localStorage.setItem("whatUiToUse", `${uiSwitch}`);
+    localStorage.setItem("whatUiToUse", `${uiRoutes}`);
   }, []);
 
   const renderDisplayLanguage = () => {
@@ -105,23 +105,20 @@ const App: React.FC = () => {
             <button
               id="built-in"
               onClick={() => handleOnUIUseChange("built-in")}
-              className={`btn-option ${state === "built-in" ? "selected" : ""}`}
-            >
+              className={`btn-option ${state === "built-in" ? "selected" : ""}`}>
               Built in
             </button>
             <button
               id="custom"
               onClick={() => handleOnUIUseChange("custom")}
-              className={`btn-option ${state === "custom" ? "selected" : ""}`}
-            >
+              className={`btn-option ${state === "custom" ? "selected" : ""}`}>
               Custom
             </button>
           </div>
           <div className="language-container" tabIndex={0} onBlur={() => setLangToggled(false)}>
             <div
               onClick={() => setLangToggled(!langToggled)}
-              className={`active-display ${langToggled && "toggled"}`}
-            >
+              className={`active-display ${langToggled && "toggled"}`}>
               <span className="selected-label">{renderDisplayLanguage()}</span>
               <span className="arrow">
                 <ArrowDown />
@@ -133,8 +130,7 @@ const App: React.FC = () => {
                   <div
                     id={`select-${language}`}
                     onClick={() => handleOnLanguageChange(language)}
-                    className="single-option"
-                  >
+                    className="single-option">
                     {language}
                   </div>
                 ))}
@@ -143,58 +139,75 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="full-login-container">
-          <Switch>
-            <Route path="/" exact>
-              <Link to="/login">
-                <button id="start-btn" onClick={onLoginStart}>
-                  Start
-                </button>
-              </Link>
-            </Route>
-            <Route path="/forgot">
-              {state === "custom" ? <CustomForgotPassword /> : <ForgottenPassword />}
-            </Route>
-            <Route path="/set/new/password/:referenceId">
-              {state === "custom" ? <CustomSetNewPassword /> : <SetNewPassword />}
-            </Route>
-            <Route path="/login/oauth2">
-              <Oidc />
-            </Route>
-            <Route path="/registration">
-              {state === "custom" ? (
-                <CustomRegistration setToken={setToken} />
-              ) : (
-                <Registration setToken={setToken} />
-              )}
-            </Route>
-            <Route path="/login">
-              {state === "custom" ? (
-                <CustomLogin setToken={setToken} />
-              ) : (
-                <Login setToken={setToken} />
-              )}
-            </Route>
-            <Route path="/callback">
-              <Callback setToken={setToken} />
-            </Route>
-            <Route path="/authenticated">
-              {token || refreshToken ? (
-                <div className="buttons-wrapper">
-                  <button id="refresh-token-btn" onClick={onRefreshToken}>
-                    Refresh token
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Link to="/login">
+                  <button id="start-btn" onClick={onLoginStart}>
+                    Start
                   </button>
-                  <button id="logout-btn" onClick={onLogout}>
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <h5>No token found</h5>
-                  <Link to="/login">go to login</Link>
-                </>
-              )}
-            </Route>
-          </Switch>
+                </Link>
+              }
+            />
+
+            <Route
+              path="/forgot"
+              element={state === "custom" ? <CustomForgotPassword /> : <ForgottenPassword />}
+            />
+
+            <Route
+              path="/set/new/password/:referenceId"
+              element={state === "custom" ? <CustomSetNewPassword /> : <SetNewPassword />}
+            />
+
+            <Route path="/login/oauth2" element={<Oidc />} />
+
+            <Route
+              path="/registration"
+              element={
+                state === "custom" ? (
+                  <CustomRegistration setToken={setToken} />
+                ) : (
+                  <Registration setToken={setToken} />
+                )
+              }
+            />
+
+            <Route
+              path="/login"
+              element={
+                state === "custom" ? (
+                  <CustomLogin setToken={setToken} />
+                ) : (
+                  <Login setToken={setToken} />
+                )
+              }
+            />
+
+            <Route path="/callback" element={<Callback setToken={setToken} />} />
+
+            <Route
+              path="/authenticated"
+              element={
+                token || refreshToken ? (
+                  <div className="buttons-wrapper">
+                    <button id="refresh-token-btn" onClick={onRefreshToken}>
+                      Refresh token
+                    </button>
+                    <button id="logout-btn" onClick={onLogout}>
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <h5>No token found</h5>
+                    <Link to="/login">go to login</Link>
+                  </>
+                )
+              }
+            />
+          </Routes>
           <br />
 
           {token && (
