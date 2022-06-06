@@ -1273,18 +1273,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@indykiteone/jarvis-sdk-web@0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.1.15.tgz#3bfb068125b3ef60f96dea3ebe0a4b42a8e21901"
-  integrity sha512-2Vc+GtiLw0ZGQvQfaCgOHbqYb+oE+lE1OczlJm4Wggy/E0D0Po6AtUMN7zDgFfQxwVPksizIVE1c/O5PuRF8yQ==
-  dependencies:
-    axios "^0.26.0"
-    core-js "^3.21.1"
-    crypto-js "^4.1.1"
-    intl-messageformat "^9.11.4"
-    query-string "^7.1.1"
-    regenerator-runtime "^0.13.9"
-
 "@indykiteone/jarvis-sdk-web@^0.2.1":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@indykiteone/jarvis-sdk-web/-/jarvis-sdk-web-0.2.1.tgz#dc8f86a72d18ec8e31c20c9867f3699e609ed010"
@@ -3989,10 +3977,10 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
-cypress@^9.1.0:
-  version "9.7.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-9.7.0.tgz#bf55b2afd481f7a113ef5604aa8b693564b5e744"
-  integrity sha512-+1EE1nuuuwIt/N1KXRR2iWHU+OiIt7H28jJDyyI4tiUftId/DrXYEwoDa5+kH2pki1zxnA0r6HrUGHV5eLbF5Q==
+cypress@^10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-10.0.3.tgz#889b4bef863b7d1ef1b608b85b964394ad350c5f"
+  integrity sha512-8C82XTybsEmJC9POYSNITGUhMLCRwB9LadP0x33H+52QVoBjhsWvIzrI+ybCe0+TyxaF0D5/9IL2kSTgjqCB9A==
   dependencies:
     "@cypress/request" "^2.88.10"
     "@cypress/xvfb" "^1.2.4"

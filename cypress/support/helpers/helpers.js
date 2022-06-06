@@ -22,8 +22,8 @@ export function checkNewUser(email, password1, password2, alertKeyWord, correctI
     checkToken();
   } else {
     CreateUserPage.notificationContainer.should("exist");
-    //alertKeyWord && CreateUserPage.notificationText.should("contain", alertKeyWord);
-    //alertKeyWord && CreateUserPage.notificationText.should("have.css", "color", "rgb(255, 0, 0)"); // rgb(255,0,0) is the red color
+    alertKeyWord && CreateUserPage.notificationText.should("contain", alertKeyWord);
+    // alertKeyWord && CreateUserPage.notificationText.should("have.css", "color", "rgb(255, 0, 0)"); // rgb(255,0,0) is the red color
   }
 }
 
@@ -37,7 +37,6 @@ export function checkForgottenPasswordInput(email, alertKeyWord) {
   ForgottenPasswordPage.resetPasswordEmailBtn.click();
   ForgottenPasswordPage.notificationText.should("exist");
   alertKeyWord && ForgottenPasswordPage.notificationText.should("contain", alertKeyWord);
-  // non blank input, the alert is green, otherwise the alert is red
   const notificationColor = email ? "rgb(182, 251, 145)" : "rgb(255, 0, 0)";
   alertKeyWord &&
     ForgottenPasswordPage.notificationText.should("have.css", "color", notificationColor);
@@ -61,8 +60,7 @@ export function checkLogin(email, password, correctlyLogged, alertKeyWord, secon
 
 function checkLoginAlerts(alertKeyWord, secondKeyWord) {
   LoginPage.notificationText.should("exist");
-  alertKeyWord && LoginPage.notificationText.should("have.css", "color", "rgb(255, 0, 0)"); // rgb(255,0,0) is the red color
-  // checks one or two keywords
+  alertKeyWord && LoginPage.notificationText.should("have.css", "color", "rgb(240, 93, 85)");
   if (secondKeyWord) {
     alertKeyWord &&
       LoginPage.notificationText.should("contain", alertKeyWord).and("contain", secondKeyWord);

@@ -29,7 +29,7 @@ export class CreateUserPage {
     return cy.get("#IKUISDK-btn-register");
   }
 
-  get notificationContainer(){
+  get notificationContainer() {
     return cy.get("#IKUISDK-notification-container");
   }
 
