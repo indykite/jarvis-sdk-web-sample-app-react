@@ -45,12 +45,22 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
       .catch((err) => console.log(err));
   }, [email, password, onSuccess, confirmPassword]);
 
+  let ignore = false;
   useEffect(() => {
-    (async () => {
-      const response = await IKUIUserAPI.registerSetup();
-      // error handling should be in place
-      setRegisterOpts(response.opts);
-    })();
+    if (!ignore) {
+      console.log("Custom Registration");
+
+      const setRegister = async () => {
+        const response = await IKUIUserAPI.registerSetup();
+        // error handling should be in place
+        setRegisterOpts(response.opts);
+      };
+      setRegister();
+    }
+
+    return () => {
+      ignore = false;
+    };
   }, []);
 
   return (

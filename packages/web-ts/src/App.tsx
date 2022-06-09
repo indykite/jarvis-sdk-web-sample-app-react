@@ -52,12 +52,17 @@ const App: React.FC = () => {
     setLangToggled(false);
   };
 
+  let ignore = false;
   useEffect(() => {
-    if (defaultLanguageState === "CZ") {
+    if (defaultLanguageState === "CZ" && !ignore) {
       IKUIInit({
         localeConfig: csCZLocale,
       });
     }
+
+    return () => {
+      ignore = true;
+    };
   }, [defaultLanguageState]);
 
   const handleOnUIUseChange = (type: string) => {

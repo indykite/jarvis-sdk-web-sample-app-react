@@ -17,21 +17,27 @@ const Login: React.FC<IProps> = ({ setToken }) => {
     [setToken, navigate],
   );
 
+  let ignore = false;
   useEffect(() => {
-    IKUICore.render({
-      renderElementSelector: ".login-container",
-      onSuccess: onSuccess,
-      redirectUri: "/callback",
-      forgotPasswordPath: "/forgot",
-      labels: {
-        // username: "Custom Username",
-        // password: "Custom Password",
-        loginButton: "Custom Login with us!",
-        // registerButton: "Custom Register",
-        // forgotPasswordButton: "custom Forgot Password",
-        // orOtherOptions: "Custom you can also continue with",
-      },
-    });
+    if (!ignore) {
+      IKUICore.render({
+        renderElementSelector: ".login-container",
+        onSuccess: onSuccess,
+        redirectUri: "/callback",
+        forgotPasswordPath: "/forgot",
+        labels: {
+          // username: "Custom Username",
+          // password: "Custom Password",
+          loginButton: "Custom Login with us!",
+          // registerButton: "Custom Register",
+          // forgotPasswordButton: "custom Forgot Password",
+          // orOtherOptions: "Custom you can also continue with",
+        },
+      });
+    }
+    return () => {
+      ignore = true;
+    };
   });
 
   return (
