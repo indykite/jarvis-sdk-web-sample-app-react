@@ -27,7 +27,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
   const redirectUri = "/callback";
 
   const onSuccess = React.useCallback(
-    (data: any) => {
+    (data: DataTokenResponseType) => {
       setToken(data);
       navigate("/authenticated");
     },
@@ -48,8 +48,6 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
   let ignore = false;
   useEffect(() => {
     if (!ignore) {
-      console.log("Custom Registration");
-
       const setRegister = async () => {
         const response = await IKUIUserAPI.registerSetup();
         // error handling should be in place
