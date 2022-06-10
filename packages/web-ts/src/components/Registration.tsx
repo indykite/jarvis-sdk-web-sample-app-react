@@ -10,7 +10,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
   const navigate = useNavigate();
 
   const onSuccess = React.useCallback(
-    (data: any) => {
+    (data: DataTokenResponseType) => {
       setToken(data);
       navigate("/authenticated");
     },
