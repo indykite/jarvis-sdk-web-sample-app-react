@@ -50,8 +50,8 @@ const Login: React.FC<IProps> = ({ setToken }) => {
   }, []);
 
   const onSuccess = React.useCallback(
-    (data: any) => {
-      setToken(data);
+    (data: DataTokenResponseType | Error) => {
+      setToken(data as DataTokenResponseType);
       navigate("/authenticated");
     },
     [setToken, navigate],

@@ -27,7 +27,7 @@ const Registration: React.FC<IProps> = ({ setToken }) => {
   const redirectUri = "/callback";
 
   const onSuccess = React.useCallback(
-    (data: any) => {
+    (data: DataTokenResponseType) => {
       setToken(data);
       navigate("/authenticated");
     },
