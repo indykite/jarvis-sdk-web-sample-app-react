@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-cypress": "yarn build && serve build -l 3000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "jest --coverage --silent",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
     "jest": "^28.1.0",
+    "serve": "^13.0.4",
     "typescript": "^4.7.3"
   },
   "browserslist": {
