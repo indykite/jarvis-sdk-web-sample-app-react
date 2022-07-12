@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   DataTokenResponseType,
@@ -25,34 +25,28 @@ const Login: React.FC<IProps> = ({ setToken }) => {
   );
   const [type, setType] = React.useState<string | null>(null);
 
-  let ignore = false;
-  useEffect(() => {
+  React.useEffect(() => {
     // This allows to skip login if there is valid token found.
-    if (!ignore) {
-      const setup = async () => {
-        // CHOOSE ONE
+    const setup = async () => {
+      // CHOOSE ONE
 
-        const loginSetupResponse = await IKUIUserAPI.loginSetup();
+      const loginSetupResponse = await IKUIUserAPI.loginSetup();
 
-        console.log(loginSetupResponse);
-        // OR
+      console.log(loginSetupResponse);
+      // OR
 
-        // END OF CHOOSE ONE
+      // END OF CHOOSE ONE
 
-        setSetupResponseData(loginSetupResponse);
-        if (loginSetupResponse && loginSetupResponse["@type"])
-          setType(loginSetupResponse["@type"]);
+      setSetupResponseData(loginSetupResponse);
+      if (loginSetupResponse && loginSetupResponse["@type"]) setType(loginSetupResponse["@type"]);
 
-        return () => {
-          setType(null);
-          setSetupResponseData(null);
-        };
+      return () => {
+        setType(null);
+        setSetupResponseData(null);
       };
-      setup().catch(console.log);
-    }
-    return () => {
-      ignore = true;
     };
+
+    setup().catch(console.log);
   }, []);
 
   const onSuccess = React.useCallback(

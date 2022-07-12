@@ -7,11 +7,8 @@ const SetNewPassword = () => {
     referenceId: string;
   }>();
 
-  let ignore = false;
   React.useEffect(() => {
-    if (referenceId && !ignore) {
-      console.log("Set new password");
-
+    if (referenceId) {
       IKUICore.renderSetNewPasswordForm({
         renderElementSelector: "#set-new-password-container",
         token: referenceId,
@@ -22,9 +19,6 @@ const SetNewPassword = () => {
         },
       });
     }
-    return () => {
-      ignore = true;
-    };
   });
 
   return (
